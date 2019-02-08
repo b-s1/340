@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Add GoT Location</title>
+  <title>Add GoT House</title>
 
   <!-- Handlebars -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
@@ -12,7 +12,8 @@
     {{#each results}}
     <tr>
       <td>{{name}}</td>
-      <td>{{population}}</td>
+      <td>{{sigil}}</td>
+      <td>{{baseCity}}</td>
       <td><input type="button" value="Edit" onclick="editRow('{{this.id}}');" /></td>
     </tr>
     {{/each}}
@@ -20,20 +21,26 @@
 </head>
 
 <body>
-  <h1> Game of Thrones: Locations </h1>
+  <h1> Game of Thrones: Houses </h1>
 
-  <!-- Form to add location -->
+  <!-- Form to add new house -->
+  <h3>Add a new House</h3>
+
   Name: <input type="text" id="name">
-  Population: <input type="number" id="population">
-  <button type="submit" id="addLoc">Add location</button>
+  Sigil: <input type="text" id="sigil">
+  Base City: <input type="text" id="baseCity">
+
+  <button type="submit" id="addHouse">Add House</button>
 
   <!-- Display table -->
   <hr>
+  <h3>Houses in database</h3>
   <table>
     <thead>
       <tr>
         <th>Name</th>
-        <th>Population</th>
+        <th>Sigil</th>
+        <th>Base City</th>
         <th class="blank-cell"></th>
       </tr>
     </thead>
@@ -41,7 +48,7 @@
   </table>
 
   <!-- Script to render template and display locations-->
-  <script src="public/locScript.js"> </script>
+  <script src="public/displayScript.js"> </script>
 
 </body>
 </html>

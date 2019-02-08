@@ -1,0 +1,68 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Add GoT Character</title>
+
+  <!-- Handlebars -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
+
+  <!-- Handlebars template for populating table -->
+  <!-- Handlebars adapted from https://code-maven.com/introduction-to-handlebars-javascript-templating-system -->
+  <script id="text-template" type="text/x-handlebars-template">
+    {{#each results}}
+    <tr>
+      <td>{{fname}}</td>
+      <td>{{lname}}</td>
+      <td>{{status}}</td>
+      <td>{{home}}</td>
+      <td>{{currLoc}}</td>
+      <td><input type="button" value="Edit" onclick="editRow('{{this.id}}');" /></td>
+    </tr>
+    {{/each}}
+  </script>
+</head>
+
+<body>
+  <h1> Game of Thrones: Characters </h1>
+
+  <!-- Form to add new character -->
+  <h3>Add a new character</h3>
+
+  First Name: <input type="text" id="fname">
+  Last Name: <input type="text" id="lname">
+  <br />
+
+  Life Status:
+    <select name="status">
+      <option value="1">Alive</option>
+      <option value="0">Dead</option>
+      <option value="2">Undead</option>
+    </select>
+
+  Homeland: <input type="text" id="homeland">
+  Current location: <input type="text" id="currLoc">
+
+  <button type="submit" id="addChar">Add Character</button>
+
+  <!-- Display table -->
+  <hr>
+  <h3>Characters in database</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Life Status</th>
+        <th>Homeland</th>
+        <th>Current Location</th>
+        <th class="blank-cell"></th>
+      </tr>
+    </thead>
+    <tbody id="result"></tbody>
+  </table>
+
+  <!-- Script to render template and display locations-->
+  <script src="public/displayScript.js"> </script>
+
+</body>
+</html>
