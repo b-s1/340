@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Add GoT Location</title>
+
+  <!-- Handlebars -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
+
+  <!-- Handlebars template for populating table -->
+  <!-- Handlebars adapted from https://code-maven.com/introduction-to-handlebars-javascript-templating-system -->
+  <script id="text-template" type="text/x-handlebars-template">
+    {{#each results}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{population}}</td>
+      <td><input type="button" value="Edit" onclick="editRow('{{this.id}}');" /></td>
+    </tr>
+    {{/each}}
+  </script>
+</head>
+
+<body>
+  <h1> Game of Thrones: Locations </h1>
+
+  Name: <input type="text" id="name">
+  Population: <input type="number" id="population">
+  <button id="addLoc">Add location</button>
+
+  <hr>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Population</th>
+        <th class="blank-cell"></th>
+      </tr>
+    </thead>
+    <tbody id="result"></tbody>
+  </table>
+
+  <script src="public/locScript.js"> </script>
+
+</body>
+</html>
