@@ -3,6 +3,9 @@
   <meta charset="utf-8">
   <title>Add GoT Character</title>
 
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
   <!-- Handlebars -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
 
@@ -32,10 +35,12 @@
   </div>
 
 
-  <!-- Display table -->
+  <!-- Display searchable table -->
+  <!-- Adapted from: http://jsfiddle.net/dfsq/7BUmG/1133/-->
   <div class="outer">
+    <input type="text" id="search" placeholder="Search character name">
     <h3>Characters in database</h3>
-    <table>
+    <table id="table">
       <thead>
         <tr>
           <th>First Name</th>
@@ -47,7 +52,18 @@
           <th class="blank-cell"></th>
         </tr>
       </thead>
-      <tbody id="result"></tbody>
+      <tbody id="result">
+        <tr>
+          <td>Daenerys</td>
+          <td>targaryen</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+      </tbody>
     </table>
   </div>
 
@@ -69,11 +85,11 @@
       Homeland: <input type="text" id="homeland">
       Current location: <input type="text" id="currLoc">
 
-      <button type="submit" id="addChar">Add Character</button>
+      <button type="submit" id="add-char">Add Character</button>
     </div>
 
   <!-- Script to render template and display locations-->
-  <script src="public/displayScript.js"> </script>
+  <script src="public/scripts/displayScript.js"> </script>
 
 </body>
 </html>
