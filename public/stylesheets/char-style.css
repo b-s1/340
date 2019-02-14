@@ -1,0 +1,14 @@
+body {
+  background-color: black;
+  /* image source:  http://genchi.info/daenerys-targaryen-hd-wallpaper */
+  background-image: url(images/daenerys.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.outer{
+  width: 50%;
+  background-color: rgb(243,243,243,0.6);
+  padding: 30px;
+  margin: 20px 20px 20px 40px;
+}

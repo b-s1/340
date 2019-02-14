@@ -17,49 +17,60 @@
       <td>{{home}}</td>
       <td>{{currLoc}}</td>
       <td><input type="button" value="Edit" onclick="editRow('{{this.id}}');" /></td>
+      <td><input type="button" value="Delete" onclick="deleteRow('{{this.id}}');" /></td>
     </tr>
     {{/each}}
   </script>
+
+  <!-- styling -->
+  <link rel="stylesheet" href="public/stylesheets/char-style.css" type="text/css">
 </head>
 
 <body>
-  <h1> Game of Thrones: Characters </h1>
+  <div class="outer">
+    <h1> Game of Thrones: Characters </h1>
+  </div>
 
-  <!-- Form to add new character -->
-  <h3>Add a new character</h3>
-
-  First Name: <input type="text" id="fname">
-  Last Name: <input type="text" id="lname">
-  <br />
-
-  Life Status:
-    <select name="status">
-      <option value="1">Alive</option>
-      <option value="0">Dead</option>
-      <option value="2">Undead</option>
-    </select>
-
-  Homeland: <input type="text" id="homeland">
-  Current location: <input type="text" id="currLoc">
-
-  <button type="submit" id="addChar">Add Character</button>
 
   <!-- Display table -->
-  <hr>
-  <h3>Characters in database</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Life Status</th>
-        <th>Homeland</th>
-        <th>Current Location</th>
-        <th class="blank-cell"></th>
-      </tr>
-    </thead>
-    <tbody id="result"></tbody>
-  </table>
+  <div class="outer">
+    <h3>Characters in database</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Life Status</th>
+          <th>Homeland</th>
+          <th>Current Location</th>
+          <th class="blank-cell"></th>
+          <th class="blank-cell"></th>
+        </tr>
+      </thead>
+      <tbody id="result"></tbody>
+    </table>
+  </div>
+
+  <!-- Form to add new character -->
+  <div class="outer">
+    <h3>Add a new character</h3>
+
+    First Name: <input type="text" id="fname">
+    Last Name: <input type="text" id="lname">
+    <br />
+
+    Life Status:
+      <select name="status">
+        <option value="1">Alive</option>
+        <option value="0">Dead</option>
+        <option value="2">Undead</option>
+      </select>
+
+      Homeland: <input type="text" id="homeland">
+      Current location: <input type="text" id="currLoc">
+
+      <button type="submit" id="addChar">Add Character</button>
+    </div>
 
   <!-- Script to render template and display locations-->
   <script src="public/displayScript.js"> </script>
