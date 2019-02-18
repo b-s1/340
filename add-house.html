@@ -3,6 +3,15 @@
   <meta charset="utf-8">
   <title>Add GoT House</title>
 
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+  <!-- Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
   <!-- Handlebars -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
 
@@ -15,40 +24,74 @@
       <td>{{sigil}}</td>
       <td>{{baseCity}}</td>
       <td><input type="button" value="Edit" onclick="editRow('{{this.id}}');" /></td>
+      <td><input type="button" value="Delete" onclick="deleteRow('{{this.id}}');" /></td>
     </tr>
     {{/each}}
   </script>
+
+  <!-- styling -->
+  <link rel="stylesheet" href="public/stylesheets/house-style.css" type="text/css">
 </head>
 
 <body>
-  <h1> Game of Thrones: Houses </h1>
+  <!-- Menu -->
+  <nav id="navbar">
+    <div class="navbar-left">
+      <a href="index.html">
+        Game of Thrones Database
+      </a>
+    </div>
 
-  <!-- Form to add new house -->
-  <h3>Add a new House</h3>
+    <div class="navbar-right">
+      <a href="index.html">Home</a>
+      <a href="add-character.html">Characters</a>
+      <a href="add-house.html">Houses</a>
+      <a href="add-location.html">Locations</a>
+    </div>
+  </nav>
 
-  Name: <input type="text" id="name">
-  Sigil: <input type="text" id="sigil">
-  Base City: <input type="text" id="baseCity">
 
-  <button type="submit" id="addHouse">Add House</button>
+  <div class ="content">
+    <div class="outer">
+      <h1> Game of Thrones: Houses </h1>
+    </div>
 
-  <!-- Display table -->
-  <hr>
-  <h3>Houses in database</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Sigil</th>
-        <th>Base City</th>
-        <th class="blank-cell"></th>
-      </tr>
-    </thead>
-    <tbody id="result"></tbody>
-  </table>
 
-  <!-- Script to render template and display locations-->
-  <script src="public/displayScript.js"> </script>
+    <!-- Display table -->
+    <div class="outer">
+      <h3>Houses in database</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Sigil</th>
+            <th>Base City</th>
+            <th class="blank-cell"></th>
+            <th class="blank-cell"></th>
+          </tr>
+        </thead>
+        <tbody id="result"></tbody>
+      </table>
+    </div>
+
+    <!-- Form to add new house -->
+    <div class="outer">
+      <h3>Add a new House</h3>
+
+      Name: <input type="text" id="name">
+      Sigil: <input type="text" id="sigil">
+      Base City:
+      <select name="base-city">
+        <option value="1">Name from location table</option>
+      </select>
+
+      <button type="submit" id="addHouse">Add House</button>
+    </div>
+
+    <!-- Script to render template and display locations-->
+    <script src="public/displayScript.js"> </script>
+  </div>
+
 
 </body>
 </html>

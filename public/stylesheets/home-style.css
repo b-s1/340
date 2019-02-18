@@ -1,7 +1,7 @@
 body {
   background-color: black;
-  /* image source:  http://genchi.info/daenerys-targaryen-hd-wallpaper */
-  background-image: url(images/daenerys.jpg);
+  /* image source:   */
+  background-image: url(images/iron-throne.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -61,27 +61,4 @@ body {
 #navbar a:hover, {
   background-color: white;
   color: black;
-}
-
-
-.content{
-  margin-top:80px;
-}
-
-
-.outer{
-  width: 60%;
-  background-color: rgb(243,243,243,0.6);
-  padding: 30px;
-  margin: 20px 20px 20px 40px;
-}
-
-
-table, th, td{
-  border: 1px solid black;
-}
-
-
-th, td{
-  padding: 10px;
 }

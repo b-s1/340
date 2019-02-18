@@ -3,6 +3,15 @@
   <meta charset="utf-8">
   <title>Add GoT Location</title>
 
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+  <!-- Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
   <!-- Handlebars -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
 
@@ -12,36 +21,70 @@
     {{#each results}}
     <tr>
       <td>{{name}}</td>
+      <td>{{type}}</td>
       <td>{{population}}</td>
       <td><input type="button" value="Edit" onclick="editRow('{{this.id}}');" /></td>
+      <td><input type="button" value="Delete" onclick="deleteRow('{{this.id}}');" /></td>
     </tr>
     {{/each}}
   </script>
+
+  <!-- styling -->
+  <link rel="stylesheet" href="public/stylesheets/loc-style.css" type="text/css">
 </head>
 
 <body>
-  <h1> Game of Thrones: Locations </h1>
+  <!-- Menu -->
+  <nav id="navbar">
+    <div class="navbar-left">
+      <a href="index.html">
+        Game of Thrones Database
+      </a>
+    </div>
 
-  <!-- Form to add location -->
-  Name: <input type="text" id="name">
-  Population: <input type="number" id="population">
-  <button type="submit" id="addLoc">Add location</button>
+    <div class="navbar-right">
+      <a href="index.html">Home</a>
+      <a href="add-character.html">Characters</a>
+      <a href="add-house.html">Houses</a>
+      <a href="add-location.html">Locations</a>
+    </div>
+  </nav>
 
-  <!-- Display table -->
-  <hr>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Population</th>
-        <th class="blank-cell"></th>
-      </tr>
-    </thead>
-    <tbody id="result"></tbody>
-  </table>
+  <div class="content">
+    <div class="outer">
+      <h1> Game of Thrones: Locations </h1>
+    </div>
 
-  <!-- Script to render template and display locations-->
-  <script src="public/locScript.js"> </script>
+    <!-- Display table -->
+    <div class="outer">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location Type</th>
+            <th>Population</th>
+            <th class="blank-cell"></th>
+            <th class="blank-cell"></th>
+          </tr>
+        </thead>
+        <tbody id="result"></tbody>
+      </table>
+    </div>
+
+    <!-- Form to add location -->
+    <div class="outer">
+      Name: <input type="text" id="name">
+      Location type: <input type="text" id="loc-type">
+      <br />
+      
+      Population: <input type="number" id="population">
+      <button type="submit" id="addLoc">Add location</button>
+    </div>
+
+
+    <!-- Script to render template and display locations-->
+    <script src="public/locScript.js"> </script>
+  </div>
 
 </body>
 </html>

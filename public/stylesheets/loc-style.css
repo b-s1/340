@@ -1,7 +1,7 @@
 body {
   background-color: black;
-  /* image source:  http://genchi.info/daenerys-targaryen-hd-wallpaper */
-  background-image: url(images/daenerys.jpg);
+  /* image source:  */
+  background-image: url(images/the-wall.png);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -70,13 +70,13 @@ body {
 
 
 .outer{
-  width: 60%;
+  width: 50%;
   background-color: rgb(243,243,243,0.6);
   padding: 30px;
   margin: 20px 20px 20px 40px;
 }
 
-
+/* Table styling */
 table, th, td{
   border: 1px solid black;
 }
@@ -84,4 +84,8 @@ table, th, td{
 
 th, td{
   padding: 10px;
+}
+
+.blank-cell {
+  border: none;
 }
