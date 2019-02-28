@@ -1,0 +1,99 @@
+<!-- Adapted from https://github.com/knightsamar/cs340_sample_nodejs_app.git -->
+
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<!-- Display characters -->
+<h3>Characters in database</h3>
+<table id="table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Life Status</th>
+      <th>Homeland</th>
+      <th>Current Location</th>
+      <th>House</th>
+      <th class="blank-cell"></th>
+      <th class="blank-cell"></th>
+    </tr>
+  </thead>
+
+    <tbody>
+      {{#each characters}}
+      <tr>
+        <td>{{fname}}</td>
+        <td>{{lname}}</td>
+        <td>{{status}}</td>
+        <td>{{home}}</td>
+        <td>{{currLoc}}</td>
+        <td>{{house}}</td>
+        <td><a href="/character/{{this.id}}">Update</a></td>
+        <td><button onclick="deleteChar({{this.id}})">Delete</button></td>
+      </tr>
+      {{/each}}
+    </tbody>
+</table>
+
+
+<!-- Form to add new character -->
+<div class="outer">
+  <h3>Add a new character</h3>
+
+  <form id="addChar" action="/characters" method="post">
+    First Name: <input type="text" name="fname">
+    Last Name: <input type="text" name="lname">
+  <br />
+
+  Life Status:
+    <select name="status">
+      {{#each lifeStatus}}
+        <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+
+    Homeland:
+    <select name="homeland">
+      {{#each locations}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+    <br />
+
+    Current location:
+    <select name="curr-loc">
+      {{#each locations}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+
+    House:
+    <select name="curr-loc">
+      {{#each houses}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+
+    <input type="submit" id="submitChar" value:"Add Character">
+  </form>
+</div>
+
+
+
+
+<!-- Filter characters by House -->
+<form id='filter_people' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Filter by House</label>
+    <select id='house_filter' name="houses">
+        {{#each houses}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    <input type="button" value="Filter" onclick="filterCharByHouse()">
+</form>
+
+
+</html>
