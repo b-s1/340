@@ -12,7 +12,7 @@
         <option value="{{id}}">{{name}}</option>
         {{/each}}
     </select><br>
-    Curennt Location: <select name="Current_Location"> 
+    Curennt Location: <select name="current_location"> 
         {{#each locations}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}
@@ -53,9 +53,9 @@
         <tr> 
             <td>{{fname}}</td> 
             <td>{{lname}}</td> 
-            <td>life_status</td>
+            <td>{{life_status}}</td>
             <td>{{homeland}}</td> 
-            <td>{{Current_location}}</td>
+            <td>{{current_location}}</td>
             <td><button onclick="deleteCharacters({{id}})">Delete</button></td>
             <td><a href="/characters/{{id}}">Update</a></td>
         </tr> 
