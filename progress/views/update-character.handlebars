@@ -1,0 +1,21 @@
+<html>
+<h1>Update {{character.fname}} {{character.lname}}:</h1>
+<form id="update-person" action="/people" method="post">
+    First name: <input type="text" name="fname" value="{{person.fname}}"><br>
+    Last name: <input type="text" name="lname" value="{{person.lname}}"><br>
+    Life status: <input type="number" name="life_status" value="{{person.life_status}}"><br>
+    Homeland: <select name="homeland" id="location-selector"> 
+        {{#each locations}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    Current Location: <select name="current_location" id="location-selector"> 
+        {{#each locations}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+</form>
+<button onclick="updatePerson({{character.id}})">Update</button>
+<script defer>selectedLocation({{character.homeland}});</script>
+<script defer>selectedLocation({{character.current_location}});</script>
+</html>
