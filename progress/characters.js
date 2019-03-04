@@ -9,7 +9,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.houses  = results;
+            context.locations  = results;
             complete();
         });
     }
@@ -129,7 +129,7 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedLocation.js", "updatecharacter.js"];
+        context.jsscripts = ["selectedlocation.js", "updatecharacter.js"];
         var mysql = req.app.get('mysql');
         getCharacter(res, mysql, context, req.params.id, complete);
         getLocations(res, mysql, context, complete);
