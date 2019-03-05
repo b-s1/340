@@ -1,12 +1,13 @@
-function deleteCharacters(id){
+function deleteHouse(id){
     $.ajax({
-        url: '/characters/' + id,
+        url: '/houses/' + id,
         type: 'DELETE',
         success: function(result){
             window.location.reload(true);
         }
     })
 };
+
 
 function deleteCharacterHouse(character_id, house_id){
     $.ajax({

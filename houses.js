@@ -66,7 +66,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        /*context.jsscripts = ["deletecharacter.js","filtercharacters.js","searchcharacters.js"]; */
+        context.jsscripts = ["deletehouse.js"];
         var mysql = req.app.get('mysql');
         getHouses(res, mysql, context, complete);
         getLocations(res, mysql, context, complete);
@@ -173,10 +173,10 @@ module.exports = function(){
         });
     });
 
-    /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this.
+    /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM GoT_Character WHERE char_id = ?";
+        var sql = "DELETE FROM House WHERE house_id = ?";
         var inserts = [req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -185,9 +185,10 @@ module.exports = function(){
                 res.end();
             }else{
                 res.status(202).end();
+                console.log("Delete successful");
             }
         })
-    }) */
+    })
 
     return router;
 }();
