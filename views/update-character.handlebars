@@ -1,21 +1,29 @@
 <html>
-<h1>Update {{character.fname}} {{character.lname}}:</h1>
-<form id="update-character" action="/characters" method="post">
-    First name: <input type="text" name="fname" value="{{character.fname}}"><br>
-    Last name: <input type="text" name="lname" value="{{character.lname}}"><br>
-    Life status: <input type="number" name="life_status" value="{{character.life_status}}"><br>
-    Homeland: <select name="homeland" id="location-selector"> 
+<div id ="content" class="characters">
+
+  <div class="outer">
+    <h1>Update {{character.fname}} {{character.lname}}:</h1>
+  </div>
+
+  <div class="outer">
+    <form id="update-character" action="/characters" method="post">
+      First name: <input type="text" name="fname" value="{{character.fname}}"><br>
+      Last name: <input type="text" name="lname" value="{{character.lname}}"><br>
+      Life status: <input type="number" name="life_status" value="{{character.life_status}}"><br>
+      Homeland: <select name="homeland" id="location-selector">
+          {{#each locations}}
+          <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select><br>
+      Current Location: <select name="current_location" id="location-selector">
         {{#each locations}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}
-    </select><br>
-    Current Location: <select name="current_location" id="location-selector"> 
-        {{#each locations}}
-        <option value="{{id}}">{{name}}</option>
-        {{/each}}
-    </select><br>
-</form>
-<button onclick="updateCharacter({{character.id}})">Update</button>
-<script defer>selectLocation({{character.homeland}});</script>
-<script defer>selectLocation({{character.current_location}});</script>
+      </select><br>
+    </form>
+    <button onclick="updateCharacter({{character.id}})">Update</button>
+    <script defer>selectLocation({{character.homeland}});</script>
+    <script defer>selectLocation({{character.current_location}});</script>
+  </div>
+<div>
 </html>

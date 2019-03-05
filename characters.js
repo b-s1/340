@@ -3,6 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
 
+/* Select all locations to populate dropdown */
  function getLocations(res, mysql, context, complete){
         mysql.pool.query("SELECT loc_id as id, loc_name AS name FROM GoT_Locations ORDER BY loc_name", function(error, results, fields){
             if(error){
@@ -26,6 +27,7 @@ module.exports = function(){
         });
     }
 
+/* Function to select characters with a user-specified homeland */
  function getCharactersbyHomeland(req, res, mysql, context, complete){
       var query = "SELECT char_id AS id, first_name AS fname, last_name AS lname, status AS life_status, L1.loc_name AS homeland, L2.loc_name AS current_location FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L1 ON L1.loc_id = C.homeland LEFT JOIN GoT_Locations L2 ON L2.loc_id = C.current_location WHERE homeland = ? ORDER BY lname, fname";
       console.log(req.params)
@@ -55,8 +57,10 @@ module.exports = function(){
         });
     }
 
+
+      /* Function to select a single character */
         function getCharacter(res, mysql, context, id, complete){
-        var sql = "SELECT char_id as id, first_name AS fname, last_name AS lname, life_status, homeland, current_location FROM GoT_Character WHERE char_id = ?";
+        var sql = "SELECT char_id AS id, first_name AS fname, last_name AS lname, status AS life_status, L1.loc_name AS homeland, L2.loc_name AS current_location FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L1 ON L1.loc_id = C.homeland LEFT JOIN GoT_Locations L2 ON L2.loc_id = C.current_location WHERE char_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -69,6 +73,7 @@ module.exports = function(){
     }
 
 
+      /* Function to select status for dropdown menu */
       function getStatus(res, mysql, context, complete){
         mysql.pool.query("SELECT status_id AS id, status AS name FROM life_status ORDER BY status", function(error, results, fields){
             if(error){
@@ -80,8 +85,8 @@ module.exports = function(){
         });
       }
 
-        /*Display all characters. Requires web based javascript to delete users with AJAX*/
 
+    /*Display all characters. Requires web based javascript to delete users with AJAX*/
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
@@ -138,17 +143,17 @@ module.exports = function(){
 
 
     /* Display one person for the specific purpose of updating people */
-
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedlocation.js", "updatecharacter.js"];
+        context.jsscripts = ["selectelocation.js", "updatecharacter.js"];
         var mysql = req.app.get('mysql');
         getCharacter(res, mysql, context, req.params.id, complete);
         getLocations(res, mysql, context, complete);
+        getStatus(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('update-character', context);
             }
 
@@ -182,21 +187,22 @@ module.exports = function(){
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE GoT_Character SET first_name=?, last_name=?, life_status=?, homeland=?, current_location=? WHERE char_id=?";
-        var inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, req.body.current_location];
+        var inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, req.body.current_location, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
                 res.write(JSON.stringify(error));
                 res.end();
-            }else{
+            }
+
+            else{
                 res.status(200);
                 res.end();
             }
         });
     });
 
-        /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
-
+    /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM GoT_Character WHERE char_id = ?";

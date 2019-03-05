@@ -66,6 +66,13 @@ body {
   background-attachment: fixed;
 }
 
+/* Homepage background */
+#content.home{
+  /* image source: https://imgnooz.com/wallpaper-301265 */
+  background-image: url(images/iron-throne.jpg);
+}
+
+
 /* Character background */
 #content.characters{
   /* image source:  http://genchi.info/daenerys-targaryen-hd-wallpaper */
@@ -82,7 +89,7 @@ body {
 
 
 /* Character specific container styling */
-.outer.characters {
+.characters .outer {
     background-color: rgb(243,243,243,0.6);
 }
 
