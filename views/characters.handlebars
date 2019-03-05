@@ -3,78 +3,87 @@
 {{this}}
 {{/each}}
 
-<!-- Search bar -->
-<div class="outer">
-  <form id='search_characters' action='' method=''>
-    <!--- this form does not submit directly, the button handles all the interaction with backend -->
-    <label> Search characters for first name starting with:</label>
-    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
-    <input type="button" value="Search" onclick="searchCharactersByFirstName()">
-  </form>
-</div>
+<div id="content" class= "characters">
 
-<div class="outer">
+  <div class="outer characters">
+    <h1>Characters:</h1>
+  </div>
+
+  <!-- Search bar -->
+  <div class="outer characters">
+    <form id='search_characters' action='' method=''>
+      <!--- this form does not submit directly, the button handles all the interaction with backend -->
+      <label> Search characters for first name starting with:</label>
+      <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+      <input type="button" value="Search" onclick="searchCharactersByFirstName()">
+    </form>
+  </div>
+
+
   <!-- Filter functionality -->
-  <form id='filter_characters' action='' method=''>
-  <!--- this form does not submit directly, the button handles all the interaction with backend -->
-    <label> Filter by homeland </label>
-    <select id='homeland_filter' name="homeland">
-        {{#each locations}}
-        <option value="{{id}}">{{name}}</option>
-        {{/each}}
-    </select><br>
-    <input type="button" value="Filter" onclick="filterPeopleByHomeland()">
-  </form>
-</div>
+  <div class="outer characters">
+    <form id='filter_characters' action='' method=''>
+      <!--- this form does not submit directly, the button handles all the interaction with backend -->
+      <label> Filter by homeland </label>
+      <select id='homeland_filter' name="homeland">
+          {{#each locations}}
+          <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select><br>
+        <input type="button" value="Filter" onclick="filterPeopleByHomeland()">
+      </form>
+    </div>
 
-<!-- Display all characters in database -->
-<div class="outer">
-  <h3>Current Characters:</h3>
-  <table>
-      <thead>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Life Status</th>
-        <th>Homeland</th>
-        <th>Current Location</th>
-      </thead>
+    <!-- Display all characters in database -->
+    <div class="outer characters">
+      <table>
+        <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Life Status</th>
+          <th>Homeland</th>
+          <th>Current Location</th>
+        </thead>
 
-      <tbody>
-        {{#each characters}}
-          <tr>
-            <td>{{fname}}</td>
-            <td>{{lname}}</td>
-            <td>{{life_status}}</td>
-            <td>{{homeland}}</td>
-            <td>{{current_location}}</td>
-            <td><button onclick="deleteCharacters({{id}})">Delete</button></td>
-            <td><a href="/characters/{{id}}">Update</a></td>
-          </tr>
-        {{/each}}
-    </tbody>
-  </table>
-</div>
+        <tbody>
+          {{#each characters}}
+            <tr>
+              <td>{{fname}}</td>
+              <td>{{lname}}</td>
+              <td>{{life_status}}</td>
+              <td>{{homeland}}</td>
+              <td>{{current_location}}</td>
+              <td><button onclick="deleteCharacters({{id}})">Delete</button></td>
+              <td><a href="/characters/{{id}}">Update</a></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
 
 
-<div class="outer">
-<h3>Add a New Characters:</h3>
-<form id="addcharacters" action="/characters" method="post">
-    First name: <input type="text" name="fname"><br>
-    Last name: <input type="text" name="lname"><br>
-    Life status: <input type="number" name="life_status"><br>
-    Homeland: <select name="homeland">
-        {{#each locations}}
-        <option value="{{id}}">{{name}}</option>
-        {{/each}}
-    </select><br>
-    Curennt Location: <select name="current_location">
-        {{#each locations}}
-        <option value="{{id}}">{{name}}</option>
-        {{/each}}
-    </select><br>
-    <input type="submit" value="Submit">
- </form>
-<br/>
+      <!-- Form to add new character -->
+      <div class="outer characters">
+        <h3>Add a New Characters:</h3>
+
+        <form id="addcharacters" action="/characters" method="post">
+          First name: <input type="text" name="fname"><br>
+          Last name: <input type="text" name="lname"><br>
+          Life status: <input type="number" name="life_status"><br>
+          Homeland: <select name="homeland">
+            {{#each locations}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+          </select><br>
+          Curennt Location: <select name="current_location">
+            {{#each locations}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+          </select><br>
+          <input type="submit" value="Submit">
+        </form>
+        <br/>
+      </div>
 </div>
 
 </html>
