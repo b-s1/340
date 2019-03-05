@@ -1,104 +1,203 @@
 module.exports = function(){
-  var express = require('express');
-  var router = express.Router();
-
-  //Select all characters from database
-  function getChar(res, mysql, context, complete){
-    //Select query for character info
-    var selectQ = 'SELECT char_id AS id, first_name AS fname, last_name AS lname, status, loc_name AS home, loc_name AS currLoc, house_name AS house FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L ON L.loc_id = C.homeland LEFT JOIN L ON L.loc_id = C.current_location LEFT JOIN GoT_House_Members HM ON HM.character_id = C.char_id INNER JOIN Houses H on H.house_id = HM.house_id';
-    mysql.pool.query(selectQ, function(error, results, fields){
-      //If error, display error message and end process
-      if(error){
-        res.write(JSON.stringify(error));
-        res.end();
-      }
-
-      context.characters = results;
-      complete();
-    });
-  }
+    var express = require('express');
+    var router = express.Router();
 
 
-  //Select locations from database
-  function getLoc(res, mysql, context, complete){
-    //Select query for location info
-    var selectQ = 'SELECT loc_id AS id, loc_name AS name FROM GoT_Locations';
-    mysql.pool.query(selectQ, function(error, results, fields){
-      if(error){
-        res.write(JSON.stringify(error));
-        res.end();
-      }
-
-      context.locations = results;
-      complete();
-    });
-  }
-
-
-  //Select life status from database
-  function getStatus(res, mysql, context, complete){
-    var selectQ = 'SELECT status_id AS id, status AS name FROM life_status';
-    mysql.pool.query(selectQ, function(error, results, fields){
-      if(error){
-        res.write(JSON.stringify(error));
-        res.end();
-      }
-
-      context.lifeStatus = results;
-      complete();
-    });
-  }
-
-
-  //Select house from database
-  function getHouse(res, mysql, context, complete){
-    var selectQ = 'SELECT house_id AS id, house_name AS name FROM Houses';
-    mysql.pool.query(selectQ, function(error, results, fields){
-      if(error){
-        res.write(JSON.stringify(error));
-        res.end();
-      }
-
-      context.houses = results;
-      complete();
-    });
-  }
-
-
-  //Select characters belonging to particular house
-  function getCharByHouse(req, res, mysql, context, complete){
-    var query = "SELECT char_id AS id, first_name AS fname, last_name AS lname, status, loc_name AS home, loc_name AS currLoc, house_name AS house FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L ON L.loc_id = C.homeland LEFT JOIN L ON L.loc_id = C.current_location LEFT JOIN GoT_House_Members HM ON HM.character_id = C.char_id INNER JOIN Houses H on H.house_id = HM.house_id WHERE house = ?";
-    console.log(req.params);
-    var inserts = [req.params.house];
-
-    mysql.pool.query(query, inserts, function(error, results, fields){
-      if(error){
-        res.write(JSON.stringify(error));
-        res.end();
-      }
-
-      context.characters = results;
-      complete();
-    });
-  }
-
-
-  //Display all characters in Database
-  router.get('/', function(req, res){
-    var callbackCount = 0;
-    var context = {};
-    context.jsscripts = [];
-    var mysql = req.app.get('mysql');
-    getChar(res, mysql, context, complete);
-    getLoc(res, mysql, context, complete);
-    getStatus(res, mysql, context, complete);
-    getHouse(res, mysql, context, complete);
-
-    function complete(){
-      callbackCount++;
-      if(callbackCount >= 4){
-        res.render('characters', context);
-      }
+ function getLocations(res, mysql, context, complete){
+        mysql.pool.query("SELECT loc_id as id, loc_name AS name, loc_type AS type FROM GoT_Locations", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.locations  = results;
+            complete();
+        });
     }
-  });
-}
+
+
+    function getCharacters(res, mysql, context, complete){
+        mysql.pool.query("SELECT char_id AS id, first_name AS fname, last_name AS lname, life_status.status_id AS life_status, L1.loc_id AS homeland, L2.loc_id AS current_location FROM GoT_Character c INNER JOIN life_status ON c.life_status = life_status.status_id INNER JOIN GoT_Locations L1 ON c.homeland = L1.loc_id INNER JOIN GoT_Locations L2 ON c.current_location = L2.loc_id ", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.characters = results;
+            complete();
+        });
+    }
+
+ function getCharactersbyHomeland(req, res, mysql, context, complete){
+      var query = "SELECT Got_Character.char_id AS as id, first_name AS fname, last_name AS lname, GoT_Locations.loc_id AS homeland FROM GoT_Character INNER JOIN GoT_Locations ON homeland = GoT_Locations.loc_id WHERE GoT_Character.homeland = ?";
+      console.log(req.params)
+      var inserts = [req.params.homeworld]
+      mysql.pool.query(query, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.characters = results;
+            complete();
+        });
+    }
+
+        function getCharactersWithNameLike(req, res, mysql, context, complete) {
+      //sanitize the input as well as include the % character
+       var query = "SELECT GoT_Character.char_id AS id, first_name AS fname, last_name AS lname, GoT_Locations.loc_id AS homeland FROM GoT_Character INNER JOIN GoT_Locations ON homeland = GoT_Locations.loc_id WHERE GoT_Character.homeland LIKE " + mysql.pool.escape(req.params.s + '%');
+      console.log(query)
+
+      mysql.pool.query(query, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.characters = results;
+            complete();
+        });
+    }
+
+        function getCharacter(res, mysql, context, id, complete){
+        var sql = "SELECT char_id as id, first_name AS fname, last_name AS lname, life_status, homeland, current_location FROM GoT_Character WHERE char_id = ?";
+        var inserts = [id];
+        mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.character = results[0];
+            complete();
+        });
+    }
+
+        /*Display all characters. Requires web based javascript to delete users with AJAX*/
+
+    router.get('/', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deletecharacter.js","filtercharacters.js","searchcharacters.js"];
+        var mysql = req.app.get('mysql');
+        getCharacters(res, mysql, context, complete);
+        getLocations(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 2){
+                res.render('characters', context);
+            }
+
+        }
+    });
+
+
+        /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
+    router.get('/filter/:homeland', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deletecharacter.js","filtercharacters.js","searchcharacters.js"];
+        var mysql = req.app.get('mysql');
+        getCharactersbyHomeland(req,res, mysql, context, complete);
+        getLocations(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 2){
+                res.render('characters', context);
+            }
+
+        }
+    });
+
+
+
+        /*Display all characters whose name starts with a given string. Requires web based javascript to delete users with AJAX */
+    router.get('/search/:s', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+		context.jsscripts = ["deletecharacter.js","filtercharacters.js","searchcharacters.js"];
+        var mysql = req.app.get('mysql');
+        getCharactersWithNameLike(req, res, mysql, context, complete);
+        getLocations(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 2){
+                res.render('characters', context);
+            }
+        }
+    });
+
+
+
+    /* Display one person for the specific purpose of updating people */
+
+    router.get('/:id', function(req, res){
+        callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["selectedlocation.js", "updatecharacter.js"];
+        var mysql = req.app.get('mysql');
+        getCharacter(res, mysql, context, req.params.id, complete);
+        getLocations(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 2){
+                res.render('update-character', context);
+            }
+
+        }
+    });
+
+        /* Adds a person, redirects to the people page after adding */
+
+    router.post('/', function(req, res){
+        console.log(req.body.homeland)
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO GoT_Character (first_name, last_name, life_status, homeland, current_location) VALUES (?,?,?,?,?)";
+        var inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, req.body.current_location];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/characters');
+            }
+        });
+    });
+
+
+        /* The URI that update data is sent to in order to update a person */
+
+    router.put('/:id', function(req, res){
+        var mysql = req.app.get('mysql');
+        console.log(req.body)
+        console.log(req.params.id)
+        var sql = "UPDATE GoT_Character SET first_name=?, last_name=?, life_status=?, homeland=?, current_location=? WHERE char_id=?";
+        var inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, req.body.current_location];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(error)
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.status(200);
+                res.end();
+            }
+        });
+    });
+
+        /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
+
+    router.delete('/:id', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "DELETE FROM GoT_Character WHERE char_id = ?";
+        var inserts = [req.params.id];
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.status(400);
+                res.end();
+            }else{
+                res.status(202).end();
+            }
+        })
+    })
+
+    return router;
+}();

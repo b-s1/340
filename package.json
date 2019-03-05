@@ -1,12 +1,12 @@
 {
-  "name": "GoTDB",
+  "name": "Game of Thrones site and Database",
   "version": "1.0.0",
-  "description": "Game of Thrones database",
+  "description": "Database of GoT show ",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "gasiciec",
+  "author": "shahb and gasiciec",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.13.3",
