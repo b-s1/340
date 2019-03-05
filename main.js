@@ -1,6 +1,6 @@
-/*  
-    Uses express, dbcon for database connection, body parser to parse form data 
-    handlebars for HTML templates  
+/*
+    Uses express, dbcon for database connection, body parser to parse form data
+    handlebars for HTML templates
 */
 
 var express = require('express');
@@ -18,6 +18,7 @@ app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 app.use('/house_members', require('./house_members.js'));
 app.use('/characters', require('./characters.js'));
+app.use('/houses', require('./houses.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
@@ -32,5 +33,5 @@ app.use(function(err, req, res, next){
 });
 
 app.listen(app.get('port'), function(){
-  console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+  console.log('Express started on http://flip1.engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
 });

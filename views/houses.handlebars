@@ -1,0 +1,67 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<div id="content" class="houses">
+
+  <div class="outer">
+    <h1>Houses</h1>
+  </div>
+
+  <!-- Filter functionality
+  <div class="outer">
+    <form id='filter_characters' action='' method=''>
+      <label> Filter by homeland </label>
+      <select id='homeland_filter' name="homeland">
+          {{#each locations}}
+          <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select>
+        <input type="button" value="Filter" onclick="filterPeopleByHomeland()">
+      </form>
+    </div>
+  -->
+
+    <!-- Display all houses in database -->
+    <div class="outer">
+      <table>
+        <thead>
+          <th>House Name</th>
+          <th>Sigil</th>
+          <th>Base City</th>
+        </thead>
+
+        <tbody>
+          {{#each houses}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{sigil}}</td>
+              <td>{{base}}</td>
+              <!-- <td><button onclick="deleteCharacters({{id}})">Delete</button></td> -->
+              <td><a href="/houses/{{id}}">Update</a></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+
+      <!-- Form to add new house -->
+      <div class="outer">
+        <h3>Add a New House:</h3>
+        <form id="addhouse" action="/house" method="post">
+          House Name: <input type="text" name="name"><br>
+          Sigil: <input type="text" name="sigil"><br>
+          Base City: <select name="base">
+            {{#each locations}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+          </select><br>
+          <input type="submit" value="Submit">
+        </form>
+        <br/>
+      </div>
+</div>
+
+</html>
