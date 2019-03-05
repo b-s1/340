@@ -74,11 +74,13 @@
             {{/each}}
           </select><br>
           Homeland: <select name="homeland">
+            <option value = NULL>  </option>
             {{#each locations}}
             <option value="{{id}}">{{name}}</option>
             {{/each}}
           </select><br>
-          Currennt Location: <select name="current_location">
+          Current Location: <select name="current_location">
+            <option value = NULL>  </option>
             {{#each locations}}
             <option value="{{id}}">{{name}}</option>
             {{/each}}
