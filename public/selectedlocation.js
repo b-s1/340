@@ -1,3 +1,4 @@
-function selectLocation(id){
-    $("#location-selector").val(id);
+function selectLocation(hid, cid){
+    $("#home-selector").val(hid);
+    $("#current-selector").val(cid);
 }

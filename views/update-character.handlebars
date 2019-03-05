@@ -9,21 +9,25 @@
     <form id="update-character" action="/characters" method="post">
       First name: <input type="text" name="fname" value="{{character.fname}}"><br>
       Last name: <input type="text" name="lname" value="{{character.lname}}"><br>
-      Life status: <input type="number" name="life_status" value="{{character.life_status}}"><br>
-      Homeland: <select name="homeland" id="location-selector">
+      Life status: <select name="life_status" id ="status-selector">
+        {{#each status}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+      </select><br>
+      Homeland: <select name="homeland" id="home-selector">
           {{#each locations}}
           <option value="{{id}}">{{name}}</option>
           {{/each}}
         </select><br>
-      Current Location: <select name="current_location" id="location-selector">
+      Current Location: <select name="current_location" id="current-selector">
         {{#each locations}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}
       </select><br>
     </form>
     <button onclick="updateCharacter({{character.id}})">Update</button>
-    <script defer>selectLocation({{character.homeland}});</script>
-    <script defer>selectLocation({{character.current_location}});</script>
+    <script defer>selectStatus({{character.life_status}});</script>
+    <script defer>selectLocation({{character.homeland}}, {{character.current_location}});</script>
   </div>
 <div>
 </html>

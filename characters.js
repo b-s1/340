@@ -60,7 +60,7 @@ module.exports = function(){
 
       /* Function to select a single character */
         function getCharacter(res, mysql, context, id, complete){
-        var sql = "SELECT char_id AS id, first_name AS fname, last_name AS lname, status AS life_status, L1.loc_name AS homeland, L2.loc_name AS current_location FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L1 ON L1.loc_id = C.homeland LEFT JOIN GoT_Locations L2 ON L2.loc_id = C.current_location WHERE char_id = ?";
+        var sql = "SELECT char_id AS id, first_name AS fname, last_name AS lname, life_status, homeland, current_location FROM GoT_Character WHERE char_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -146,7 +146,7 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectelocation.js", "updatecharacter.js"];
+        context.jsscripts = ["selectedlocation.js", "selectedstatus.js", "updatecharacter.js"];
         var mysql = req.app.get('mysql');
         getCharacter(res, mysql, context, req.params.id, complete);
         getLocations(res, mysql, context, complete);
