@@ -67,9 +67,12 @@ body {
 }
 
 /* Homepage background */
-#content.home{
+#home{
   /* image source: https://imgnooz.com/wallpaper-301265 */
   background-image: url(images/iron-throne.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 
@@ -90,7 +93,7 @@ body {
 
 /* Character specific container styling */
 .characters .outer {
-    background-color: rgb(243,243,243,0.6);
+    background-color: rgb(243,243,243,0.8);
 }
 
 
