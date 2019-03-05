@@ -1,3 +1,7 @@
+body {
+    background-color: black;
+}
+
 /* Navbar styling */
 #navbar{
   background: rgba(0, 0, 0, 0.5);
@@ -55,23 +59,21 @@
 }
 
 
-
 #content {
-    margin-top:100px;
-}
-
-
-/* Character background */
-#content.characters{
-  /* image source:  http://genchi.info/daenerys-targaryen-hd-wallpaper */
-  background-image: url(images/daenerys.jpg);
+  padding-top: 80px;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
 
+/* Character background */
+#content.characters{
+  /* image source:  http://genchi.info/daenerys-targaryen-hd-wallpaper */
+  background-image: url(images/daenerys.jpg);
+}
 
 
+/* Content container styling for all pages */
 .outer{
   width: 60%;
   padding: 30px;
@@ -79,8 +81,14 @@
 }
 
 
+/* Character specific container styling */
 .outer.characters {
     background-color: rgb(243,243,243,0.6);
+}
+
+
+h1 {
+  text-align: center;
 }
 
 

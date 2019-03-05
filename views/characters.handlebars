@@ -6,7 +6,7 @@
 <div id="content" class= "characters">
 
   <div class="outer characters">
-    <h1>Characters:</h1>
+    <h1>Characters</h1>
   </div>
 
   <!-- Search bar -->
@@ -29,7 +29,7 @@
           {{#each locations}}
           <option value="{{id}}">{{name}}</option>
           {{/each}}
-        </select><br>
+        </select>
         <input type="button" value="Filter" onclick="filterPeopleByHomeland()">
       </form>
     </div>
@@ -67,15 +67,15 @@
         <h3>Add a New Characters:</h3>
 
         <form id="addcharacters" action="/characters" method="post">
-          First name: <input type="text" name="fname"><br>
+          First name: <input type="text" name="fname">
           Last name: <input type="text" name="lname"><br>
           Life status: <input type="number" name="life_status"><br>
           Homeland: <select name="homeland">
             {{#each locations}}
             <option value="{{id}}">{{name}}</option>
             {{/each}}
-          </select><br>
-          Curennt Location: <select name="current_location">
+          </select>
+          Current Location: <select name="current_location">
             {{#each locations}}
             <option value="{{id}}">{{name}}</option>
             {{/each}}
