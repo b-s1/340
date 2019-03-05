@@ -92,6 +92,13 @@ body {
 }
 
 
+/* Locations background */
+#content.locations{
+  /* image source:  */
+  background-image: url(images/the-wall.png);
+}
+
+
 /* Content container styling for all pages */
 .outer{
   width: 60%;
@@ -127,6 +134,11 @@ body {
   color: black;
 }
 
+
+/* Locations specific container styling */
+.locations .outer {
+    background-color: rgb(243,243,243,0.8);
+}
 
 
 h1 {
