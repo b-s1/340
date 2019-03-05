@@ -4,7 +4,7 @@ module.exports = function(){
 
 
  function getLocations(res, mysql, context, complete){
-        mysql.pool.query("SELECT loc_id as id, loc_name AS name FROM GoT_Locations", function(error, results, fields){
+        mysql.pool.query("SELECT loc_id as id, loc_name AS name FROM GoT_Locations ORDER BY loc_name", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -16,7 +16,7 @@ module.exports = function(){
 
 
     function getCharacters(res, mysql, context, complete){
-        mysql.pool.query("SELECT char_id AS id, first_name AS fname, last_name AS lname, status AS life_status, L1.loc_name AS homeland, L2.loc_name AS current_location FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L1 ON L1.loc_id = C.homeland LEFT JOIN GoT_Locations L2 ON L2.loc_id = C.current_location ORDER BY lname", function(error, results, fields){
+        mysql.pool.query("SELECT char_id AS id, first_name AS fname, last_name AS lname, status AS life_status, L1.loc_name AS homeland, L2.loc_name AS current_location FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L1 ON L1.loc_id = C.homeland LEFT JOIN GoT_Locations L2 ON L2.loc_id = C.current_location ORDER BY lname, fname", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -68,15 +68,14 @@ module.exports = function(){
         });
     }
 
-    
-      function getStatus(res, mysql, context, id, complete){
-        var sql = "SELECT status_id AS id, status FROM life_status";
-        mysql.pool.query(sql, function(error, results, fields){
+
+      function getStatus(res, mysql, context, complete){
+        mysql.pool.query("SELECT status_id AS id, status AS name FROM life_status ORDER BY status", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.life_status = results;
+            context.status = results;
             complete();
         });
       }
@@ -90,9 +89,10 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getCharacters(res, mysql, context, complete);
         getLocations(res, mysql, context, complete);
+        getStatus(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('characters', context);
             }
 
