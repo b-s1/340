@@ -14,7 +14,7 @@ module.exports = function(){
         });
     }
 
-
+/* Select all characters in table sorted by last name */
     function getCharacters(res, mysql, context, complete){
         mysql.pool.query("SELECT char_id AS id, first_name AS fname, last_name AS lname, status AS life_status, L1.loc_name AS homeland, L2.loc_name AS current_location FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L1 ON L1.loc_id = C.homeland LEFT JOIN GoT_Locations L2 ON L2.loc_id = C.current_location ORDER BY lname, fname", function(error, results, fields){
             if(error){
@@ -27,7 +27,7 @@ module.exports = function(){
     }
 
  function getCharactersbyHomeland(req, res, mysql, context, complete){
-      var query = "SELECT char_id AS id, first_name AS fname, last_name AS lname, GoT_Locations.loc_id AS homeland FROM GoT_Character INNER JOIN GoT_Locations ON homeland = GoT_Locations.loc_id WHERE GoT_Character.homeland = ?";
+      var query = "SELECT char_id AS id, first_name AS fname, last_name AS lname, status AS life_status, L1.loc_name AS homeland, L2.loc_name AS current_location FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L1 ON L1.loc_id = C.homeland LEFT JOIN GoT_Locations L2 ON L2.loc_id = C.current_location WHERE homeland = ? ORDER BY lname, fname";
       console.log(req.params)
       var inserts = [req.params.homeland]
       mysql.pool.query(query, inserts, function(error, results, fields){
@@ -100,7 +100,7 @@ module.exports = function(){
     });
 
 
-        /*Display all people from a given homeworld. Requires web based javascript to delete users with AJAX*/
+    /*Display all people from a given homeland. Requires web based javascript to delete users with AJAX*/
     router.get('/filter/:homeland', function(req, res){
         var callbackCount = 0;
         var context = {};
@@ -108,12 +108,12 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getCharactersbyHomeland(req,res, mysql, context, complete);
         getLocations(res, mysql, context, complete);
+        getStatus(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 3){
                 res.render('characters', context);
             }
-
         }
     });
 
