@@ -50,7 +50,7 @@
       <!-- Form to add new house -->
       <div class="outer">
         <h3>Add a New House:</h3>
-        <form id="addhouse" action="/house" method="post">
+        <form id="addhouse" action="/houses" method="post">
           House Name: <input type="text" name="name"><br>
           Sigil: <input type="text" name="sigil"><br>
           Base City: <select name="base">
@@ -58,7 +58,7 @@
             <option value="{{id}}">{{name}}</option>
             {{/each}}
           </select><br>
-          <input type="submit" value="Submit">
+          <input  class="button" type="submit" value="Submit">
         </form>
         <br/>
       </div>

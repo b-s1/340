@@ -55,7 +55,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.house = results[0];
+            context.houses = results[0];
             complete();
         });
     }
@@ -152,8 +152,8 @@ module.exports = function(){
     });
 
 
-        /* The URI that update data is sent to in order to update a house */
 
+    /* The URI that update data is sent to in order to update a house */
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         console.log(req.body)

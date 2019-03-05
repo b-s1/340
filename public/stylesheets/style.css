@@ -4,7 +4,7 @@ body {
 
 /* Navbar styling */
 #navbar{
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   font-family: 'Raleway', sans-serif;
   color: white;
   z-index: 1;
@@ -64,6 +64,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  padding-bottom: 80px;
   bottom: 0;
 }
 
@@ -84,6 +85,13 @@ body {
 }
 
 
+/* Houses background */
+#content.houses{
+  /* image source:  http://watchersonthewall.com/game-of-thrones-arrives-in-dubrovnik-croatia-for-season-8-filming/ */
+  background-image: url(images/Cersei-Jaime.jpg);
+}
+
+
 /* Content container styling for all pages */
 .outer{
   width: 60%;
@@ -95,6 +103,18 @@ body {
 /* Character specific container styling */
 .characters .outer {
     background-color: rgb(243,243,243,0.8);
+}
+
+
+/* Houses specific container styling */
+.houses .outer {
+    background-color: rgb(70,35,25,0.8);
+    color: white;
+}
+
+
+.houses .outer .button{
+  color: black;
 }
 
 
