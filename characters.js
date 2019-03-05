@@ -27,9 +27,9 @@ module.exports = function(){
     }
 
  function getCharactersbyHomeland(req, res, mysql, context, complete){
-      var query = "SELECT Got_Character.char_id AS as id, first_name AS fname, last_name AS lname, GoT_Locations.loc_id AS homeland FROM GoT_Character INNER JOIN GoT_Locations ON homeland = GoT_Locations.loc_id WHERE GoT_Character.homeland = ?";
+      var query = "SELECT char_id AS id, first_name AS fname, last_name AS lname, GoT_Locations.loc_id AS homeland FROM GoT_Character INNER JOIN GoT_Locations ON homeland = GoT_Locations.loc_id WHERE GoT_Character.homeland = ?";
       console.log(req.params)
-      var inserts = [req.params.homeworld]
+      var inserts = [req.params.homeland]
       mysql.pool.query(query, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
