@@ -1,0 +1,43 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+<div>
+<h3> Associate House(s) with a Character </h3>
+    <form id="add_character_houses" action="/house_members" method="post">
+    Person: <select name='character_id'>
+        {{#each people}}
+          <option value='{{character_id}}'>{{fname}} {{lname}}</option>
+        {{/each}}
+    </select>
+    <br>
+    Houses:<sup>Multi-select</sup> <select multiple name="homes"> 
+        {{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
+        {{#each houses}}
+        <option value="{{house_id}}">{{title}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+    </form>
+</div>
+<br/>
+<h3> List of Characters with their Houses </h3>
+<table>
+    <thead> 
+        <th>Name</th> 
+        <th>House</th> 
+    </thead> 
+    <tbody> 
+        {{#each characters_with_houses}} 
+        <tr> 
+            <td>{{Character}}</td> 
+            <td>{{House}}</td> 
+            <td><button onclick="deleteCharacterHouse({{character_id}},{{house_id}})">Delete</button></td>
+        </tr>
+        {{else}}
+        <b> No people with any Houses found! Grant some using the form. </b>
+        {{/each}} 
+
+    </tbody>
+</table> 
+</html>
