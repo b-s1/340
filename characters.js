@@ -16,7 +16,7 @@ module.exports = function(){
 
 
     function getCharacters(res, mysql, context, complete){
-        mysql.pool.query("SELECT char_id AS id, first_name AS fname, last_name AS lname, life_status.status_id AS life_status, L1.loc_id AS homeland, L2.loc_id AS current_location FROM GoT_Character c INNER JOIN life_status ON c.life_status = life_status.status_id INNER JOIN GoT_Locations L1 ON c.homeland = L1.loc_id INNER JOIN GoT_Locations L2 ON c.current_location = L2.loc_id ", function(error, results, fields){
+        mysql.pool.query("SELECT char_id AS id, first_name AS fname, last_name AS lname, status AS life_status, L1.loc_name AS homeland, L2.loc_name AS current_location FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L1 ON L1.loc_id = C.homeland LEFT JOIN GoT_Locations L2 ON L2.loc_id = C.current_location ORDER BY lname", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();

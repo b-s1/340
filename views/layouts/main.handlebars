@@ -1,13 +1,40 @@
 <!doctype html>
 <html>
 <head>
-	<title>Demo Page</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+  <!-- Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     {{#each jsscripts}}
     <script src="/static/{{this}}"></script>
     {{/each}}
+
+    <!-- styling -->
+    <link rel="stylesheet" href="/static/stylesheets/{{this}}" type="text/css">
 </head>
 <body>
+	<!-- Menu -->
+	<nav id="navbar">
+		<div class="navbar-left">
+			<a href="index.html">
+				Game of Thrones Database
+			</a>
+		</div>
+
+		<div class="navbar-right">
+			<a href="index.html">Home</a>
+			<a href="characters">Characters</a>
+			<a href="houses">Houses</a>
+			<a href="locations">Locations</a>
+		</div>
+	</nav>
+
+
 	{{{body}}}
 </body>
 </html>
