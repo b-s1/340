@@ -14,4 +14,8 @@ current issues:
  
  biran: adding the house_members and house_locations tables 
 
-
+3/4/19 8pm PST: 
+1. fixed showing all characters
+2. update in progress
+3. adding hosue mem and house loc tables in progress
+4. some stlying added
