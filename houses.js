@@ -48,7 +48,7 @@ module.exports = function(){
 
       /* Function to select a single house */
         function getHouse(res, mysql, context, id, complete){
-        var sql = "SELECT house_id AS id, house_name AS name, sigil, base_city FROM Houses WHERE house_id = ?";
+        var sql = "SELECT house_id AS id, house_name AS name, sigil, base_city AS base FROM Houses WHERE house_id = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -120,7 +120,7 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedlocation.js", "updatehouse.js"];
+        context.jsscripts = ["selectedBaseCity.js", "updatehouse.js"];
         var mysql = req.app.get('mysql');
         getHouse(res, mysql, context, req.params.id, complete);
         getLocations(res, mysql, context, complete);

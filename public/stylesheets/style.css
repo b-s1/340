@@ -113,9 +113,20 @@ body {
 }
 
 
-.houses .outer .button{
+.houses .outer input{
   color: black;
 }
+
+
+.houses .outer select{
+  color: black;
+}
+
+
+.houses .outer button{
+  color: black;
+}
+
 
 
 h1 {
