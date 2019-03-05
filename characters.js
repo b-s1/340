@@ -63,4 +63,42 @@ module.exports = function(){
       complete();
     });
   }
+
+
+  //Select characters belonging to particular house
+  function getCharByHouse(req, res, mysql, context, complete){
+    var query = "SELECT char_id AS id, first_name AS fname, last_name AS lname, status, loc_name AS home, loc_name AS currLoc, house_name AS house FROM GoT_Character C INNER JOIN life_status LS ON LS.status_id = C.life_status LEFT JOIN GoT_Locations L ON L.loc_id = C.homeland LEFT JOIN L ON L.loc_id = C.current_location LEFT JOIN GoT_House_Members HM ON HM.character_id = C.char_id INNER JOIN Houses H on H.house_id = HM.house_id WHERE house = ?";
+    console.log(req.params);
+    var inserts = [req.params.house];
+
+    mysql.pool.query(query, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.end();
+      }
+
+      context.characters = results;
+      complete();
+    });
+  }
+
+
+  //Display all characters in Database
+  router.get('/', function(req, res){
+    var callbackCount = 0;
+    var context = {};
+    context.jsscripts = [];
+    var mysql = req.app.get('mysql');
+    getChar(res, mysql, context, complete);
+    getLoc(res, mysql, context, complete);
+    getStatus(res, mysql, context, complete);
+    getHouse(res, mysql, context, complete);
+
+    function complete(){
+      callbackCount++;
+      if(callbackCount >= 4){
+        res.render('characters', context);
+      }
+    }
+  });
 }
