@@ -9,7 +9,9 @@ current issues:
  2. update character not functioning right
  
  good: delete and insert functions work for characters.
+ 
  clarissa: fixing current issues 
+ 
  biran: adding the house_members and house_locations tables 
 
 
