@@ -4,7 +4,7 @@ module.exports = function(){
 
 
  function getLocations(res, mysql, context, complete){
-        mysql.pool.query("SELECT loc_id as id, loc_name AS name, loc_type AS type FROM GoT_Locations", function(error, results, fields){
+        mysql.pool.query("SELECT loc_id as id, loc_name AS name FROM GoT_Locations", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -67,6 +67,19 @@ module.exports = function(){
             complete();
         });
     }
+
+    
+      function getStatus(res, mysql, context, id, complete){
+        var sql = "SELECT status_id AS id, status FROM life_status";
+        mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.life_status = results;
+            complete();
+        });
+      }
 
         /*Display all characters. Requires web based javascript to delete users with AJAX*/
 

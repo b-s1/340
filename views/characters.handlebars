@@ -61,7 +61,11 @@
 <form id="addcharacters" action="/characters" method="post">
     First name: <input type="text" name="fname"><br>
     Last name: <input type="text" name="lname"><br>
-    Life status: <input type="number" name="life_status"><br>
+    Life status: <select name="life_status">
+        {{#each status}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
     Homeland: <select name="homeland">
         {{#each locations}}
         <option value="{{id}}">{{name}}</option>
