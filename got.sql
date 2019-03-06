@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS GoT_Locations;
 CREATE TABLE GoT_Locations (
 loc_id int(11) NOT NULL AUTO_INCREMENT,
 loc_name varchar(50) NOT NULL,
-loc_type varchar(10) NOT NULL,
+loc_type varchar(20) NOT NULL,
 PRIMARY KEY (loc_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -125,6 +125,6 @@ FOREIGN KEY (house_id) REFERENCES Houses (house_id) ON DELETE CASCADE ON UPDATE 
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 LOCK TABLES GoT_House_Location WRITE;
-INSERT INTO GoT_House_Location VALUES (2, 2), (34,1), (29,3),(12,4),(10,5),(32,6),
+INSERT INTO GoT_House_Location VALUES (2, 2), (23,2), (38,2), (34,1), (29,3),(30,3),(12,4),(25,4),(10,5),(32,6),(22,6),(24,6),
 (20,7),(51,8),(9,9),(24,10),(57,11),(37,12),(58,13),(61,14),(68,15),(2,16);
 UNLOCK TABLES;

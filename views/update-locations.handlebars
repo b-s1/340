@@ -1,0 +1,25 @@
+<html>
+<div id ="content" class="locations">
+
+  <div class="outer">
+    <h1>Update {{location.name}}</h1>
+  </div>
+
+  <div class="outer">
+    <form id="update-location" action="/locations" method="post">
+      Location name: <input type="text" name="name" value="{{location.name}}"><br>
+      Location Type: <select name="type" id="type-selector">
+          <option value="Body of water">Body of water</option>
+          <option value="Castle">Castle</option>
+          <option value="City">City</option>
+          <option value="Continent">Continent</option>
+          <option value="Island">Island</option>
+          <option value="Lands">Lands</option>
+          <option value="Region">Region</option>
+        </select><br>
+    </form>
+    <button onclick="updateLocation({{location.id}})">Update</button>
+    <script defer>selectType("{{location.type}}");</script>
+  </div>
+<div>
+</html>
