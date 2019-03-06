@@ -8,9 +8,7 @@
   <div class="outer">
     <form id="update-location" action="/locations" method="post">
       Location name: <input type="text" name="name" value="{{location.name}}"><br>
-      <form id="addlocation" action="/locations" method="post">
-        Location Name: <input type="text" name="name"><br>
-        Location Type: <select name="sigil">
+      Location Type: <select name="type" id="type-selector">
           <option value="Body of water">Body of water</option>
           <option value="Castle">Castle</option>
           <option value="City">City</option>
@@ -18,17 +16,10 @@
           <option value="Island">Island</option>
           <option value="Lands">Lands</option>
           <option value="Region">Region</option>
-        </select>
-\
-
-      Current Location: <select name="current_location" id="current-selector">
-        {{#each locations}}
-        <option value="{{id}}">{{name}}</option>
-        {{/each}}
-      </select><br>
+        </select><br>
     </form>
     <button onclick="updateLocation({{location.id}})">Update</button>
-    <script defer>selectType({{location.id}});</script>
+    <script defer>selectType("{{location.type}}");</script>
   </div>
 <div>
 </html>

@@ -58,13 +58,13 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["updatelocation.js"];
+        context.jsscripts = ["selectedType.js", "updatelocation.js"];
         var mysql = req.app.get('mysql');
         getLocation(res, mysql, context, req.params.id, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
-                res.render('update-location', context);
+                res.render('update-locations', context);
             }
 
         }
