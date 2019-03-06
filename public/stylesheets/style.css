@@ -106,15 +106,14 @@ body {
 
 /* House_locations background */
 #content.house_locations{
-  /* image source: http://hauteslides.com/wordpress/wp-content/uploads/2011/05/Game-of-Thrones-House-Locations.png */
-  background-image: url(images/house_locations.png);
+  /* image source: http://www.shinforce.com/cool/wallpaper/Game_of_Thrones/Game_of_Thrones-02-1920x1200.jpg */
+  background-image: url(images/tree.jpg);
 }
 
 /* life status background */
 #content.lifestatus{
-  /* image source: https://twitter.com/GameOfThrones/status/1101148910725271552/photo/1?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1101148910725271552&ref_url=https%3A%2F%2Fwww.newsbytesapp.com%2Ftimeline%2FEntertainment%2F42583%2F190366%2Fgot-poster-shows-night-king-sitting-on-throne
- */
-  background-image: url(images/night.jpg);
+  /* image source: */
+  background-image: url(images/battle.jpg);
 }
 
 /* Content container styling for all pages */
