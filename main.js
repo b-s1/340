@@ -17,6 +17,7 @@ app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 app.use('/house_members', require('./house_members.js'));
+app.use('/house_locations', require('./house_locations.js'));
 app.use('/characters', require('./characters.js'));
 app.use('/houses', require('./houses.js'));
 app.use('/', express.static('public'));
