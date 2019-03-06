@@ -19,6 +19,7 @@ app.set('mysql', mysql);
 app.use('/house_members', require('./house_members.js'));
 app.use('/characters', require('./characters.js'));
 app.use('/houses', require('./houses.js'));
+app.use('/locations', require('./locations.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){

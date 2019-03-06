@@ -1,0 +1,60 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<div id="content" class="locations">
+
+  <div class="outer">
+    <h1>Locations</h1>
+  </div>
+
+  <!-- Filter functionality
+  <div class="outer">
+    <form id='filter_characters' action='' method=''>
+      <label> Filter by homeland </label>
+      <select id='homeland_filter' name="homeland">
+          {{#each locations}}
+          <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select>
+        <input type="button" value="Filter" onclick="filterPeopleByHomeland()">
+      </form>
+    </div>
+  -->
+
+    <!-- Display all locations in database -->
+    <div class="outer">
+      <table>
+        <thead>
+          <th>Location Name</th>
+          <th>Location Type</th>
+        </thead>
+
+        <tbody>
+          {{#each locations}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{type}}</td>
+              <td><button onclick="deleteLocation({{id}})">Delete</button></td>
+              <td><a href="/locations/{{id}}">Update</a></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+
+      <!-- Form to add new location -->
+      <div class="outer">
+        <h3>Add a New Location:</h3>
+        <form id="addlocation" action="/locations" method="post">
+          Location Name: <input type="text" name="name"><br>
+          Location Type: <input type="text" name="sigil"><br>
+          <input  class="button" type="submit" value="Submit">
+        </form>
+        <br/>
+      </div>
+</div>
+
+</html>
