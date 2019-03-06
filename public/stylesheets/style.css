@@ -110,6 +110,12 @@ body {
   background-image: url(images/house_locations.png);
 }
 
+/* life status background */
+#content.lifestatus{
+  /* image source: https://twitter.com/GameOfThrones/status/1101148910725271552/photo/1?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1101148910725271552&ref_url=https%3A%2F%2Fwww.newsbytesapp.com%2Ftimeline%2FEntertainment%2F42583%2F190366%2Fgot-poster-shows-night-king-sitting-on-throne
+ */
+  background-image: url(images/night.jpg);
+}
 
 /* Content container styling for all pages */
 .outer{
@@ -131,6 +137,11 @@ body {
 
 /* House_Members specific container styling */
 .house_locations .outer {
+  background-color: rgb(243,243,243,0.8);
+}
+
+/* House_Members specific container styling */
+.lifestatus .outer {
   background-color: rgb(243,243,243,0.8);
 }
 
