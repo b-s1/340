@@ -98,6 +98,12 @@ body {
   background-image: url(images/the-wall.png);
 }
 
+/* House_members background */
+#content.house_members{
+  /* image source:  */
+  background-image: url(images/house.JPG);
+}
+
 
 /* Content container styling for all pages */
 .outer{
@@ -110,6 +116,11 @@ body {
 /* Character specific container styling */
 .characters .outer {
     background-color: rgb(243,243,243,0.8);
+}
+
+/* House_Members specific container styling */
+.house_members .outer {
+  background-color: rgb(243,243,243,0.8);
 }
 
 
