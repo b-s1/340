@@ -1,0 +1,43 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<div id="content" class="lifestatus">
+
+  <div class="outer">
+    <h1>Life Status</h1>
+  </div>
+
+
+    <!-- Display all life status in database -->
+    <div class="outer">
+      <table>
+        <thead>
+          <th>Life Status</th>
+        </thead>
+
+        <tbody>
+          {{#each lifestatus}}
+            <tr>
+              <td>{{status}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+
+      <!-- Form to add new house -->
+      <div class="outer">
+        <h3>Add a New Life Status:</h3>
+        <form id="addLifeStatus" action="/lifestatus" method="post">
+          Life Status: <input type="text" name="status"><br>
+          <br>
+          <input  class="button" type="submit" value="Submit">
+        </form>
+        <br/>
+      </div>
+</div>
+
+</html>
