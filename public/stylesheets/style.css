@@ -100,13 +100,13 @@ body {
 
 /* House_members background */
 #content.house_members{
-  /* image source:  */
+  /* image source:  https://qph.fs.quoracdn.net/main-qimg-b6d7504d543029e0b8cc14453b8ee299-c */
   background-image: url(images/house.JPG);
 }
 
-/* House_members background */
+/* House_locations background */
 #content.house_locations{
-  /* image source:  */
+  /* image source: http://hauteslides.com/wordpress/wp-content/uploads/2011/05/Game-of-Thrones-House-Locations.png */
   background-image: url(images/house_locations.png);
 }
 
