@@ -104,6 +104,12 @@ body {
   background-image: url(images/house.JPG);
 }
 
+/* House_members background */
+#content.house_locations{
+  /* image source:  */
+  background-image: url(images/house_locations.png);
+}
+
 
 /* Content container styling for all pages */
 .outer{
@@ -123,6 +129,10 @@ body {
   background-color: rgb(243,243,243,0.8);
 }
 
+/* House_Members specific container styling */
+.house_locations .outer {
+  background-color: rgb(243,243,243,0.8);
+}
 
 /* Houses specific container styling */
 .houses .outer {
