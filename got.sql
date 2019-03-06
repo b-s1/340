@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS GoT_Locations;
 CREATE TABLE GoT_Locations (
 loc_id int(11) NOT NULL AUTO_INCREMENT,
 loc_name varchar(50) NOT NULL,
-loc_type varchar(10) NOT NULL,
+loc_type varchar(20) NOT NULL,
 PRIMARY KEY (loc_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
