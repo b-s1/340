@@ -20,11 +20,8 @@ app.use('/house_members', require('./house_members.js'));
 app.use('/house_locations', require('./house_locations.js'));
 app.use('/characters', require('./characters.js'));
 app.use('/houses', require('./houses.js'));
-<<<<<<< HEAD
 app.use('/locations', require('./locations.js'));
-=======
 app.use('/lifestatus', require('./lifestatus.js'));
->>>>>>> 9a126efe250839e5d44636ba3dfee86db031e3a9
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
