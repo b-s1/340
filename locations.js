@@ -39,7 +39,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        /* context.jsscripts = ["deletelocation.js"]; */
+        context.jsscripts = ["deletelocation.js"];
         var mysql = req.app.get('mysql');
         getLocations(res, mysql, context, complete);
         function complete(){
