@@ -2,19 +2,34 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-<div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<div id="content" class="house-members">
 
-<h3> Associate houses(s) with a character </h3>
+  <div class="outer">
+    <h1>Characters and Houses</h1>
+  </div>
+
+  <div class="outer">
+    <table>
+      <thead>
+        <th>Character</th>
+        <th>House</th>
+      </thead>
+      <tbody>
+        {{#each characters_with_houses}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{house_name}}</td>
+            <td><button onclick="deleteCharacterHouse({{char_id}},{{house_id}})">Delete</button></td>
+        </tr>
+        {{else}}
+        <b>No characters are in a house! Add a character to a house using the form.</b>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="outer">
+    <h3>Add a character to a house</h3>
     <form id="characters_with_houses" action="/house_members" method="post">
     Person: <select name='char_id'>
         {{#each characters}}
@@ -22,34 +37,15 @@
         {{/each}}
     </select>
     <br>
-    Houses: <select multiple name="huts"> 
+    Houses: <select multiple name="huts">
         {{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
         {{#each manyhouses}}
-        <option value="{{house_id}}">{{hosue_name}}</option>
+        <option value="{{house_id}}">{{house_name}}</option>
         {{/each}}
     </select><br>
     <input type="submit" value="Submit">
     </form>
+  </div>
 
 </div>
-<br/>
-<h3> List of characters with their house </h3>
-<table>
-    <thead> 
-        <th>character</th> 
-        <th>house</th> 
-    </thead> 
-    <tbody> 
-        {{#each characters_with_houses}} 
-        <tr> 
-            <td>{{name}}</td> 
-            <td>{{house_name}}</td> 
-            <td><button onclick="deleteCharacterHouse({{char_id}},{{house_id}})">Delete</button></td>
-        </tr>
-        {{else}}
-        <b> No people with any house found! Grant some using the form. </b>
-        {{/each}} 
-
-    </tbody>
-</table> 
 </html>
