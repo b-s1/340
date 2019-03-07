@@ -143,7 +143,7 @@ body {
 
 /* House locations specific container styling */
 .house_locations .outer {
-  background-color: rgb(243,243,243,0.8);
+  background-color: rgb(243,243,243,0.9);
   width: 50%;
   display: inline-block;
 }
