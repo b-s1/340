@@ -66,6 +66,7 @@ body {
   background-attachment: fixed;
   padding-bottom: 80px;
   bottom: 0;
+  min-height: 100vh;
 }
 
 /* Homepage background */
