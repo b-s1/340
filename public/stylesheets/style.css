@@ -27,7 +27,7 @@ body {
   margin-left: -33px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 
@@ -96,18 +96,21 @@ body {
 #content.locations{
   /* image source:  */
   background-image: url(images/the-wall.png);
+  text-align: center;
 }
 
 /* House_members background */
 #content.house_members{
   /* image source:  https://static.highsnobiety.com/wp-content/uploads/2018/04/20185703/game-of-thrones-season-8-release-date-details-5.jpg */
   background-image: url(images/meeting.jpg);
+  text-align: center;
 }
 
 /* House_locations background */
 #content.house_locations{
   /* image source: http://www.shinforce.com/cool/wallpaper/Game_of_Thrones/Game_of_Thrones-02-1920x1200.jpg */
   background-image: url(images/tree.jpg);
+  text-align: center;
 }
 
 /* life status background */
@@ -129,19 +132,26 @@ body {
     background-color: rgb(243,243,243,0.8);
 }
 
-/* House_Members specific container styling */
+/* House Members specific container styling */
 .house_members .outer {
-  background-color: rgb(243,243,243,0.8);
+  background-color: rgb(243,243,243,0.9);
+  width: 50%;
+  display: inline-block;
 }
 
-/* House_Members specific container styling */
+
+/* House locations specific container styling */
 .house_locations .outer {
   background-color: rgb(243,243,243,0.8);
+  width: 50%;
+  display: inline-block;
 }
 
-/* House_Members specific container styling */
+
+/* Life status specific container styling */
 .lifestatus .outer {
   background-color: rgb(243,243,243,0.8);
+  width: 40%;
 }
 
 /* Houses specific container styling */
@@ -169,6 +179,8 @@ body {
 /* Locations specific container styling */
 .locations .outer {
     background-color: rgb(243,243,243,0.8);
+    width: 50%;
+    display: inline-block;
 }
 
 
