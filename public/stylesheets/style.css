@@ -117,7 +117,7 @@ body {
 /* life status background */
 #content.lifestatus{
   /* image source: */
-  background-image: url(images/battle.jpg);
+  background-image: url(images/blackwater.jpg);
 }
 
 /* Content container styling for all pages */
@@ -130,7 +130,7 @@ body {
 
 /* Character specific container styling */
 .characters .outer {
-    background-color: rgb(243,243,243,0.8);
+    background-color: rgb(243,243,243,0.9);
 }
 
 /* House Members specific container styling */
@@ -151,7 +151,7 @@ body {
 
 /* Life status specific container styling */
 .lifestatus .outer {
-  background-color: rgb(243,243,243,0.8);
+  background-color: rgb(243,243,243,0.9);
   width: 40%;
 }
 
