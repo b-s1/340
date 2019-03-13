@@ -164,10 +164,26 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         console.log(req.body.homeland)
-        console.log(req.body)
+        console.log(req.body.current_location)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO GoT_Character (first_name, last_name, life_status, homeland, current_location) VALUES (?,?,?,?,?)";
-        var inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, req.body.current_location];
+        var inserts;
+        if(req.body.homeland == 'null' && req.body.current_location != 'null'){
+          inserts = [req.body.fname, req.body.lname, req.body.life_status, null, req.body.current_location];
+        }
+
+        else if (req.body.homeland != 'null' && req.body.current_location == 'null'){
+            inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, null];
+        }
+
+        else if(req.body.homeland == 'null' && req.body.current_location == 'null'){
+          inserts = [req.body.fname, req.body.lname, req.body.life_status, null, null];
+        }
+
+        else {
+          inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, req.body.current_location];
+        }
+
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))

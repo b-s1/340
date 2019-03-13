@@ -70,8 +70,8 @@ char_id int(11) NOT NULL AUTO_INCREMENT,
 first_name varchar(50) NOT NULL,
 last_name varchar(50) DEFAULT NULL,
 life_status int(1) NOT NULL,
-homeland int(3) DEFAULT NULL,
-current_location int(3) DEFAULT NULL,
+homeland int(11) NULL,
+current_location int(11) NULL,
 PRIMARY KEY (char_id),
 FOREIGN KEY (life_status) REFERENCES life_status (status_id) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (homeland) REFERENCES GoT_Locations (loc_id) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -98,8 +98,8 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS GoT_House_Members;
 CREATE TABLE GoT_House_Members (
-house_id int(2)  NOT NULL,
-character_id int(3) NOT NULL,
+house_id int(11)  NOT NULL,
+character_id int(11) NOT NULL,
 PRIMARY KEY (house_id, character_id),
 KEY character_id (character_id),
 FOREIGN KEY (house_id) REFERENCES Houses (house_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -116,8 +116,8 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS GoT_House_Location;
 CREATE TABLE GoT_House_Location (
-location_id int(3)  NOT NULL,
-house_id int(3) NOT NULL,
+location_id int(11)  NOT NULL,
+house_id int(11) NOT NULL,
 PRIMARY KEY (location_id,house_id),
 KEY location_id (location_id),
 FOREIGN KEY (location_id) REFERENCES GoT_Locations (loc_id) ON DELETE CASCADE ON UPDATE CASCADE,
