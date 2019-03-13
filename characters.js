@@ -196,14 +196,31 @@ module.exports = function(){
     });
 
 
-        /* The URI that update data is sent to in order to update a person */
-
+    /* The URI that update data is sent to in order to update a person */
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         console.log(req.body)
         console.log(req.params.id)
         var sql = "UPDATE GoT_Character SET first_name=?, last_name=?, life_status=?, homeland=?, current_location=? WHERE char_id=?";
-        var inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, req.body.current_location, req.params.id];
+
+        var inserts;
+
+        if(req.body.homeland == 'null' && req.body.current_location != 'null'){
+          inserts = [req.body.fname, req.body.lname, req.body.life_status, null, req.body.current_location, req.params.id];
+        }
+
+        else if (req.body.homeland != 'null' && req.body.current_location == 'null'){
+            inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, null, req.params.id];
+        }
+
+        else if(req.body.homeland == 'null' && req.body.current_location == 'null'){
+          inserts = [req.body.fname, req.body.lname, req.body.life_status, null, null, req.params.id];
+        }
+
+        else {
+          inserts = [req.body.fname, req.body.lname, req.body.life_status, req.body.homeland, req.body.current_location, req.params.id];
+        }
+
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)

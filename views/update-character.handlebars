@@ -2,7 +2,7 @@
 <div id ="content" class="characters">
 
   <div class="outer">
-    <h1>Update {{character.fname}} {{character.lname}}:</h1>
+    <h1>Update {{character.fname}} {{character.lname}}</h1>
   </div>
 
   <div class="outer">
@@ -15,11 +15,13 @@
         {{/each}}
       </select><br>
       Homeland: <select name="homeland" id="home-selector">
+          <option value='null'>  </option>
           {{#each locations}}
           <option value="{{id}}">{{name}}</option>
           {{/each}}
         </select><br>
       Current Location: <select name="current_location" id="current-selector">
+        <option value='null'>  </option>
         {{#each locations}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}
