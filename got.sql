@@ -58,9 +58,9 @@ INSERT INTO Houses (house_name, sigil, base_city) VALUES ('Stark', 'Grey Direwol
 ('Arryn','White falcon flying on crescent moon',12),('Bolton','Upside down red extended man on an X-shaped cross',10),
 ('Frey','Two connected gray stone towers over water',32),('Greyjoy','Upside down gold kraken on black',20),
 ('Martell','Golden spear piercing red sun on orange',51),('Targaryen','Red three head dragon on black',9),
-('Tully','Trout jumping over water on red and blue',24),('Tyrell','Gold rose on green',57), 
-('House of Black and White', 'Faceless man', 37),('Mormont','Standing bear on white',58), 
-('Baelish', 'Black mockingbird on yellow', 61), ('Seaworth', 'Onion on black ship on grey', 68), 
+('Tully','Trout jumping over water on red and blue',24),('Tyrell','Gold rose on green',57),
+('House of Black and White', 'Faceless man', 37),('Mormont','Standing bear on white',58),
+('Baelish', 'Black mockingbird on yellow', 61), ('Seaworth', 'Onion on black ship on grey', 68),
 ('Night''s Watch', 'Black Crow', 3) ;
 UNLOCK TABLES;
 
@@ -74,10 +74,10 @@ homeland int(3) DEFAULT NULL,
 current_location int(3) DEFAULT NULL,
 PRIMARY KEY (char_id),
 FOREIGN KEY (life_status) REFERENCES life_status (status_id) ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (homeland) REFERENCES GoT_Locations (loc_id) ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (current_location) REFERENCES GoT_Locations (loc_id) ON DELETE CASCADE ON UPDATE CASCADE
+FOREIGN KEY (homeland) REFERENCES GoT_Locations (loc_id) ON DELETE SET NULL ON UPDATE CASCADE,
+FOREIGN KEY (current_location) REFERENCES GoT_Locations (loc_id) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
- 
+
 LOCK TABLES GoT_Character WRITE;
 INSERT INTO GoT_Character (first_name, last_name, life_status, homeland, current_location) VALUES ('Eddard', 'Stark', 1, 34, null),
 ('Robert', 'Baratheon', 1, 29, null), ('Jaime', 'Lannister', 2, 2,34),('Catelyn','Stark', 1,24, null ),
