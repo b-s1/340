@@ -1,4 +1,12 @@
-function selectLocation(hid, cid){
-    $("#home-selector").val(hid);
-    $("#current-selector").val(cid);
+function selectHomeland(hid){
+    if(hid){
+        $("#home-selector").val(hid);
+    }
+}
+
+
+function selectCurrent(cid){
+  if(cid){
+      $("#current-selector").val(cid);
+  }
 }

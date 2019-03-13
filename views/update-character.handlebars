@@ -29,7 +29,8 @@
     </form>
     <button onclick="updateCharacter({{character.id}})">Update</button>
     <script defer>selectStatus({{character.life_status}});</script>
-    <script defer>selectLocation({{character.homeland}}, {{character.current_location}});</script>
+    <script defer>selectHomeland({{character.homeland}});</script>
+    <script defer>selectCurrent({{character.current_location}});</script>
   </div>
 <div>
 </html>
