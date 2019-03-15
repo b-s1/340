@@ -146,7 +146,7 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedlocation.js", "selectedstatus.js", "updatecharacter.js"];
+        context.jsscripts = ["inputValidation.js", "selectedlocation.js", "selectedstatus.js", "updatecharacter.js"];
         var mysql = req.app.get('mysql');
         getCharacter(res, mysql, context, req.params.id, complete);
         getLocations(res, mysql, context, complete);

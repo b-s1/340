@@ -6,8 +6,8 @@
   </div>
 
   <div class="outer">
-    <form id="update-character" action="/characters" method="post">
-      First name: <input type="text" name="fname" value="{{character.fname}}" required /><br>
+    <form id="update-character" name="update-character" action="/characters" method="post">
+      First name: <input type="text" name="fname" value="{{character.fname}}" /><br>
       Last name: <input type="text" name="lname" value="{{character.lname}}"><br>
       Life status: <select name="life_status" id ="status-selector">
         {{#each status}}
