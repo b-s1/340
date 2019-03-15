@@ -1,4 +1,12 @@
 function updateHouse(id){
+  var nameCheck = document.forms["update-house"]["name"].value;
+  console.log(nameCheck);
+
+  if(nameCheck == ''){
+    alert("Please enter the House name");
+  }
+
+  else {
     $.ajax({
         url: '/houses/' + id,
         type: 'PUT',
@@ -7,4 +15,5 @@ function updateHouse(id){
             window.location.replace("./");
         }
     })
+  }
 };
