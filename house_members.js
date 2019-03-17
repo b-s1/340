@@ -4,7 +4,7 @@ module.exports = function(){
 
     /* get characters in dropdown */
     function getCharacters(res, mysql, context, complete){
-        mysql.pool.query("SELECT char_id, first_name, last_name FROm GoT_Character", function(error, results, fields){
+        mysql.pool.query("SELECT char_id, first_name, last_name FROm GoT_Character ORDER BY last_name, first_name", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -16,7 +16,7 @@ module.exports = function(){
 
     /* get houses to populate in dropdown */
     function getHouses(res, mysql, context, complete){
-        sql = "SELECT house_id, house_name FROM Houses";
+        sql = "SELECT house_id, house_name FROM Houses ORDER BY house_name";
         mysql.pool.query(sql, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -26,7 +26,7 @@ module.exports = function(){
             complete();
         });
     }
-    
+
     /* get characters with houses    */
     function getCharactersWithHouses(res, mysql, context, complete){
         sql = "SELECT char_id, Houses.house_id, CONCAT(first_name,' ',last_name) AS name, Houses.house_name FROM GoT_Character INNER JOIN GoT_House_Members on GoT_Character.char_id = GoT_House_Members.character_id INNER JOIN Houses on Houses.house_id = GoT_House_Members.house_id ORDER BY name, house_name"
@@ -64,7 +64,7 @@ module.exports = function(){
     router.post('/', function(req, res){
         console.log("We get the multi-select houses dropdown as ", req.body.huts)
         var mysql = req.app.get('mysql');
-        // let's get out the certificates from the array that was submitted by the form 
+        // let's get out the certificates from the array that was submitted by the form
         var manyhouses = req.body.huts
         var onecharacter = req.body.char_id
         for (let home of manyhouses) {
@@ -76,7 +76,7 @@ module.exports = function(){
                 console.log(error)
             }
           });
-        } 
+        }
         res.redirect('/house_members');
     });
 
@@ -90,8 +90,8 @@ module.exports = function(){
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
-                res.status(400); 
-                res.end(); 
+                res.status(400);
+                res.end();
             }else{
                 res.status(202).end();
             }
