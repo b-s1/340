@@ -8,51 +8,47 @@
 
 
     <div class="outer">
-        <h1> Associate houses(s) with a character </h1>
+        <h1>Members of Each Great House</h1>
     </div>
 
-    <div class="outer">
-        <form id="characters_with_houses" action="/house_members" method="post">
-            Person: <select name='char_id'>
-                {{#each characters}}
-                <option value='{{char_id}}'>{{first_name}} {{last_name}}</option>
-                {{/each}}
-            </select>
-        <br>
-            Houses: <select multiple name="huts"> 
-              {{#each manyhouses}}
-             <option value="{{house_id}}">{{house_name}}</option>
-             {{/each}}
-            </select><br>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-
-
-    <div class="outer">
-        <br/>
-        <h3> List of characters with their house </h3>
-    </div>
 
     <div class="outer">
         <table>
-            <thead> 
-            <th>character</th> 
-            <th>house</th> 
-            </thead> 
-            <tbody> 
-        {{#each characters_with_houses}} 
-            <tr> 
-                <td>{{name}}</td> 
-                <td>{{house_name}}</td> 
+            <thead>
+            <th>Character</th>
+            <th>House</th>
+            </thead>
+            <tbody>
+        {{#each characters_with_houses}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{house_name}}</td>
                 <td><button onclick="deleteCharacterHouse({{char_id}},{{house_id}})">Delete</button></td>
             </tr>
         {{else}}
         <b> No characters found with houses. Add some. </b>
-        {{/each}} 
+        {{/each}}
 
             </tbody>
-        </table> 
-        </div>
+        </table>
+  </div>
+
+  <div class="outer">
+      <h3>Associate a Character With a House</h3>
+      <form id="characters_with_houses" action="/house_members" method="post">
+          Person: <select name='char_id'>
+              {{#each characters}}
+              <option value='{{char_id}}'>{{first_name}} {{last_name}}</option>
+              {{/each}}
+          </select>
+      <br>
+          Houses: <select multiple name="huts">
+            {{#each manyhouses}}
+           <option value="{{house_id}}">{{house_name}}</option>
+           {{/each}}
+          </select><br>
+          <input type="submit" value="Submit">
+      </form>
+  </div>
 </div>
 </html>
