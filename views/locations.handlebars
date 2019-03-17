@@ -50,7 +50,8 @@
         <h3>Add a New Location:</h3>
         <form id="addlocation" action="/locations" method="post">
           Location Name: <input type="text" name="name" required /><br>
-          Location Type: <select name="type">
+          Location Type: <select name="type" required>
+            <option disabled selected value> -- select a location type -- </option>
             <option value="Body of water">Body of water</option>
             <option value="Castle">Castle</option>
             <option value="City">City</option>
