@@ -5,9 +5,9 @@ module.exports = function(){
 
 
 
-/* Select all life statuses in table sorted by id */
+/* Select all life statuses in table sorted by name */
 function getLifeStatus(res, mysql, context, complete){
-    mysql.pool.query("SELECT status_id, status FROM life_status ORDER BY status_id", function(error, results, fields){
+    mysql.pool.query("SELECT status_id, status FROM life_status ORDER BY status", function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
             res.end();
@@ -33,7 +33,7 @@ function getLifeStatus(res, mysql, context, complete){
     });
 
 
-        /* Adds life status, redirects to same page after */
+        /* Adds life status, redirects to same page after
 
     router.post('/', function(req, res){
         console.log(req.body)
@@ -50,7 +50,7 @@ function getLifeStatus(res, mysql, context, complete){
             }
         });
     });
-
+*/
 
     return router;
 }();
