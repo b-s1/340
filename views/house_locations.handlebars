@@ -16,13 +16,15 @@
         <table>
             <thead>
             <th>House</th>
-            <th>Land</th>
+            <th>Location</th>
+            <th>Location Type</th>
             </thead>
             <tbody>
         {{#each house_with_locations}}
             <tr>
                 <td>{{house_name}}</td>
                 <td>{{loc_name}}</td>
+                <td>{{loc_type}}</td>
             </tr>
         {{else}}
         <b> No characters found with houses. Add some. </b>
@@ -42,7 +44,7 @@
                 {{/each}}
             </select>
         <br>
-            Locations: <select multiple name="spots" required>
+            Locations:<select multiple name="spots" required>
               {{#each manyplaces}}
              <option value="{{loc_id}}">{{loc_name}}</option>
              {{/each}}

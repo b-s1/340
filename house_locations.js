@@ -16,7 +16,7 @@ module.exports = function(){
     }
 
 
-        /* get houses to populate in dropdown */
+        /* get locations to populate in dropdown */
         function getLocations(res, mysql, context, complete){
             sql = "SELECT loc_id, loc_name FROM GoT_Locations ORDER BY loc_name";
             mysql.pool.query(sql, function(error, results, fields){
@@ -24,7 +24,7 @@ module.exports = function(){
                     res.write(JSON.stringify(error));
                     res.end()
                 }
-                context.manyplaces = results
+                context.manyplaces = results;
                 complete();
             });
         }
@@ -32,13 +32,13 @@ module.exports = function(){
 
     /* get houses with locations    */
     function getHouseLocations(res, mysql, context, complete){
-        sql = "SELECT Houses.house_id, GoT_Locations.loc_id, house_name, GoT_Locations.loc_name FROM Houses INNER JOIN GoT_House_Location on Houses.house_id = GoT_House_Location.house_id INNER JOIN GoT_Locations on GoT_Locations.loc_id = GoT_House_Location.location_id ORDER BY house_name, loc_name"
+        sql = "SELECT HL.house_id, HL.location_id, H.house_name, L.loc_name, L.loc_type FROM Houses H INNER JOIN GoT_House_Location HL on H.house_id = HL.house_id INNER JOIN GoT_Locations L on L.loc_id = HL.location_id ORDER BY H.house_name, L.loc_name";
          mysql.pool.query(sql, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end()
             }
-            context.house_with_locations = results
+            context.house_with_locations = results;
             complete();
         });
     }
@@ -69,12 +69,13 @@ module.exports = function(){
             console.log("We get the multi-select locations dropdown as ", req.body.spots)
             var mysql = req.app.get('mysql');
 
-            var manyplaces = req.body.spots
-            var oneplace = req.body.house_id
+            var manyplaces = req.body.spots;
+            var house = req.body.house_id;
             for (let onespot of manyplaces) {
-              console.log("Processing house id " + onespot)
-              var sql = "INSERT INTO GoT_House_Location (house_id, location_id) VALUES (?,?)";
-              var inserts = [oneplace, onespot];
+              console.log("Processing location id " + onespot);
+              var sql = "INSERT INTO GoT_House_Location (location_id, house_id) VALUES (?,?)";
+              var inserts = [onespot, house];
+              console.log("Inserts: " + inserts);
               sql = mysql.pool.query(sql, inserts, function(error, results, fields){
                 if(error){
                     console.log(error)
