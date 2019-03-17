@@ -5,7 +5,7 @@ module.exports = function(){
 
     /* get houses in dropdown */
     function getHouses(res, mysql, context, complete){
-        mysql.pool.query("SELECT house_id, house_name FROM Houses", function(error, results, fields){
+        mysql.pool.query("SELECT house_id, house_name FROM Houses ORDER BY house_name", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -18,7 +18,7 @@ module.exports = function(){
 
         /* get houses to populate in dropdown */
         function getLocations(res, mysql, context, complete){
-            sql = "SELECT loc_id, loc_name FROM GoT_Locations";
+            sql = "SELECT loc_id, loc_name FROM GoT_Locations ORDER BY loc_name";
             mysql.pool.query(sql, function(error, results, fields){
                 if(error){
                     res.write(JSON.stringify(error));
@@ -80,7 +80,7 @@ module.exports = function(){
                     console.log(error)
                 }
               });
-            } 
+            }
             res.redirect('/house_locations');
         });
 

@@ -37,6 +37,7 @@
       <h3>Associate a Character With a House</h3>
       <form id="characters_with_houses" action="/house_members" method="post">
           Person: <select name='char_id'>
+            <option disabled selected value> -- select a character -- </option>
               {{#each characters}}
               <option value='{{char_id}}'>{{first_name}} {{last_name}}</option>
               {{/each}}

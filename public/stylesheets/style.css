@@ -118,6 +118,7 @@ body {
 #content.lifestatus{
   /* image source: */
   background-image: url(images/blackwater.jpg);
+  text-align: center;
 }
 
 /* Content container styling for all pages */
@@ -152,7 +153,8 @@ body {
 /* Life status specific container styling */
 .lifestatus .outer {
   background-color: rgb(243,243,243,0.9);
-  width: 40%;
+  width: 50%;
+  display: inline-block;
 }
 
 /* Houses specific container styling */

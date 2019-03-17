@@ -53,7 +53,8 @@
         <form id="addhouse" action="/houses" method="post">
           House Name: <input type="text" name="name" required /><br>
           Sigil: <input type="text" name="sigil"><br>
-          Base City: <select name="base">
+          Base City: <select name="base" required>
+            <option disabled selected value> -- select a city -- </option>
             {{#each locations}}
             <option value="{{id}}">{{name}}</option>
             {{/each}}

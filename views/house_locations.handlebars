@@ -8,18 +8,41 @@
 
 
     <div class="outer">
-        <h1> Associate houses with a location </h1>
+        <h1>Houses and Their Locations</h1>
+    </div>
+
+
+    <div class="outer">
+        <table>
+            <thead>
+            <th>House</th>
+            <th>Land</th>
+            </thead>
+            <tbody>
+        {{#each house_with_locations}}
+            <tr>
+                <td>{{house_name}}</td>
+                <td>{{loc_name}}</td>
+            </tr>
+        {{else}}
+        <b> No characters found with houses. Add some. </b>
+        {{/each}}
+
+            </tbody>
+        </table>
     </div>
 
     <div class="outer">
+        <h3>Associate a House With a Location</h3>
         <form id="house_with_locations" action="/house_locations" method="post">
-            House: <select name='house_id'>
+            House: <select name='house_id' required>
+                <option disabled selected value> -- select a House -- </option>
                 {{#each houses}}
                 <option value='{{house_id}}'>{{house_name}}</option>
                 {{/each}}
             </select>
         <br>
-            Locations: <select multiple name="spots"> 
+            Locations: <select multiple name="spots" required>
               {{#each manyplaces}}
              <option value="{{loc_id}}">{{loc_name}}</option>
              {{/each}}
@@ -27,31 +50,5 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-
-
-    <div class="outer">
-        <br/>
-        <h3> List of houses with their lands </h3>
-    </div>
-
-    <div class="outer">
-        <table>
-            <thead> 
-            <th>House</th> 
-            <th>Land</th> 
-            </thead> 
-            <tbody> 
-        {{#each house_with_locations}} 
-            <tr> 
-                <td>{{house_name}}</td> 
-                <td>{{loc_name}}</td> 
-            </tr>
-        {{else}}
-        <b> No characters found with houses. Add some. </b>
-        {{/each}} 
-
-            </tbody>
-        </table> 
-        </div>
 </div>
 </html>
