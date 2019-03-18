@@ -32,7 +32,7 @@ module.exports = function(){
 
     /* get houses with locations    */
     function getHouseLocations(res, mysql, context, complete){
-        sql = "SELECT Houses.house_id, GoT_Locations.loc_id, house_name, GoT_Locations.loc_name FROM Houses INNER JOIN GoT_House_Location on Houses.house_id = GoT_House_Location.house_id INNER JOIN GoT_Locations on GoT_Locations.loc_id = GoT_House_Location.location_id ORDER BY house_name, loc_name"
+        sql = "SELECT Houses.house_id, GoT_Locations.loc_id, house_name, GoT_Locations.loc_name, GoT_Locations.loc_type FROM Houses INNER JOIN GoT_House_Location on Houses.house_id = GoT_House_Location.house_id INNER JOIN GoT_Locations on GoT_Locations.loc_id = GoT_House_Location.location_id ORDER BY house_name, loc_name"
          mysql.pool.query(sql, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
