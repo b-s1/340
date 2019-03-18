@@ -8,30 +8,7 @@
 
 
     <div class="outer">
-        <h1> Associate houses with a location </h1>
-    </div>
-
-    <div class="outer">
-        <form id="house_with_locations" action="/house_locations" method="post">
-            House: <select name='house_id'>
-                {{#each houses}}
-                <option value='{{house_id}}'>{{house_name}}</option>
-                {{/each}}
-            </select>
-        <br>
-            Locations: <select multiple name="spots">
-              {{#each manyplaces}}
-             <option value="{{loc_id}}">{{loc_name}}</option>
-             {{/each}}
-            </select><br>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-
-
-    <div class="outer">
-        <br/>
-        <h3> List of houses with their lands </h3>
+        <h1>Great Houses and Their Locations</h1>
     </div>
 
     <div class="outer">
@@ -52,6 +29,25 @@
 
             </tbody>
         </table>
-        </div>
+    </div>
+
+    <div class="outer">
+        <h3> Associate a House with a location </h3>
+        </br>
+        <form id="house_with_locations" action="/house_locations" method="post">
+            House: <select name='house_id'>
+                {{#each houses}}
+                <option value='{{house_id}}'>{{house_name}}</option>
+                {{/each}}
+            </select>
+        <br>
+            Locations: <select multiple name="spots">
+              {{#each manyplaces}}
+             <option value="{{loc_id}}">{{loc_name}}</option>
+             {{/each}}
+            </select><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </div>
 </html>
