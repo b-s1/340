@@ -4,7 +4,7 @@ module.exports = function(){
 
     /* get characters in dropdown */
     function getCharacters(res, mysql, context, complete){
-        mysql.pool.query("SELECT char_id, first_name, last_name FROm GoT_Character ORDER BY last_name, first_name", function(error, results, fields){
+        mysql.pool.query("SELECT char_id, first_name, last_name FROM GoT_Character ORDER BY last_name, first_name", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -65,18 +65,36 @@ module.exports = function(){
         console.log("We get the multi-select houses dropdown as ", req.body.huts)
         var mysql = req.app.get('mysql');
         // let's get out the certificates from the array that was submitted by the form
-        var manyhouses = req.body.huts
-        var onecharacter = req.body.char_id
-        for (let home of manyhouses) {
-          console.log("Processing house id " + home)
+        var manyhouses = req.body.huts;
+        var onecharacter = req.body.char_id;
+
+        var isArr = Array.isArray(manyhouses);
+
+        //If many houses are selected
+        if(isArr){
+          for (let home of manyhouses) {
+            console.log("Processing house id " + home)
+            var sql = "INSERT INTO GoT_House_Members (character_id, house_id) VALUES (?,?)";
+            var inserts = [onecharacter, home];
+            sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+              if(error){
+                console.log(error)
+              }
+            });
+          }
+        }
+
+        //If only one house is selected
+        else {
           var sql = "INSERT INTO GoT_House_Members (character_id, house_id) VALUES (?,?)";
-          var inserts = [onecharacter, home];
+          var inserts = [onecharacter, manyhouses];
           sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
-                console.log(error)
+              console.log(error)
             }
           });
         }
+
         res.redirect('/house_members');
     });
 
