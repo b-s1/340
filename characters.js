@@ -249,7 +249,7 @@ module.exports = function(){
                 res.status(202).end();
             }
         })
-    })
+    });
 
     return router;
 }();

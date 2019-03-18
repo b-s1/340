@@ -51,8 +51,8 @@
       <div class="outer">
         <h3>Add a New House:</h3>
         <form id="addhouse" action="/houses" method="post">
-          House Name: <input type="text" name="name" required /><br>
-          Sigil: <input type="text" name="sigil"><br>
+          House Name: <input type="text" name="name" maxlength="50" required /><br>
+          Sigil: <input type="text" name="sigil" maxlength="100" required><br>
           Base City: <select name="base" required>
             <option disabled selected value> -- select a city -- </option>
             {{#each locations}}
