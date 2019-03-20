@@ -21,9 +21,9 @@
             <tbody>
         {{#each house_with_locations}}
             <tr>
-                <td>{{house_name}}</td>
-                <td>{{loc_name}}</td>
-                <td>{{loc_type}}</td>
+                <td>{{this.house_name}}</td>
+                <td>{{this.loc_name}}</td>
+                <td>{{this.loc_type}}</td>
             </tr>
         {{else}}
         <b> No characters found with houses. Add some. </b>
@@ -37,7 +37,8 @@
         <h3> Associate a House with a location </h3>
         </br>
         <form id="house_with_locations" action="/house_locations" method="post">
-            House: <select name='house_id'>
+            House: <select name='house_id' required>
+              <option disabled selected value> -- select a House -- </option>
                 {{#each houses}}
                 <option value='{{house_id}}'>{{house_name}}</option>
                 {{/each}}
