@@ -56,7 +56,7 @@ KEY base_city (base_city),
 FOREIGN KEY (base_city) REFERENCES GoT_Locations (loc_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
--- Defining houses 
+-- Defining houses
 LOCK TABLES Houses WRITE;
 INSERT INTO Houses (house_name, sigil, base_city) VALUES ('Stark', 'Grey Direwolf on white', 34),
 ('Lannister', 'Gold Lion on Red', 2),('Barathoen','Crowned black stag jumping on gold', 29),
@@ -75,7 +75,7 @@ CREATE TABLE GoT_Character (
 char_id int(11) NOT NULL AUTO_INCREMENT,
 first_name varchar(50) NOT NULL,
 last_name varchar(50) DEFAULT NULL,
-life_status int(1) NOT NULL,
+life_status int(1) NOT NULL DEFAULT 2,
 homeland int(11) NULL,
 current_location int(11) NULL,
 PRIMARY KEY (char_id),
@@ -121,7 +121,7 @@ INSERT INTO GoT_House_Members VALUES (1, 1), (2, 3), (3,2), (1,4), (9,5),(9,6), 
 (1,34),(5,35),(9,37),(9,38),(9,39),(8,39),(3,40),(12,41),(1,42),(5,42);
 UNLOCK TABLES;
 
--- Many to many relationsip table of houses and locations. Accesses house and location entities. 
+-- Many to many relationsip table of houses and locations. Accesses house and location entities.
 DROP TABLE IF EXISTS GoT_House_Location;
 CREATE TABLE GoT_House_Location (
 location_id int(11)  NOT NULL,
